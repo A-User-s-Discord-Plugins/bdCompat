@@ -11,15 +11,15 @@ module.exports = class BDCompat extends Plugin {
     // this.loadStylesheet('style.css')
     this.defineGlobals()
 
-    /*vizality.api.settings.registerSettings('bdCompat', {
-      category: 'bdCompat',
-      label: 'BetterDiscord Plugins',
-      render: Settings
-    });*/
+    vizality.api.settings.registerSettings("bdCompat", {
+      category: this.entityID,
+      label: "BetterDiscord Plugins",
+      render: Settings,
+    });
   }
 
   onStop () {
-    //vizality.api.settings.unregisterSettings('bdCompat') 
+    vizality.api.settings.unregisterSettings('bdCompat') 
     if (window.pluginModule) window.pluginModule.destroy()
     if (window.ContentManager) window.ContentManager.destroy()
     this.destroyGlobals()

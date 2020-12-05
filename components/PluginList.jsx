@@ -1,4 +1,4 @@
-/*'use strict'
+'use strict'
 
 const { shell: { openPath } } = require('electron')
 
@@ -88,4 +88,3 @@ module.exports = class PluginList extends React.Component {
     this.forceUpdate()
   }
 }
-*/
