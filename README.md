@@ -9,7 +9,7 @@ Compatibility layer for running BetterDiscord plugins in Powercord
 Clone this repository to your Powercord install's plugins folder
 
 ```
-git clone https://github.com/Juby210/bdCompat
+git clone https://git.gent.ooo/abUwUser/vz-bdCompat.git
 ```
 
 ## Installing BD plugins
