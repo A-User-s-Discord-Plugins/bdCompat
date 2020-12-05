@@ -23,7 +23,20 @@ module.exports = class Plugin extends React.Component {
     return (
       <Card className='vz-addon-card powercord-product bdc-plugin vzbdcompat-card'>
         <div className='vzbdcompat-center vz-addon-card-content-wrapper powercord-product-header'>
-          <h4 className='vzbdcompat-quickaligment'>{this.props.plugin.getName()}</h4>
+          <div className="vz-addon-card-metadata">
+            <div className="vz-addon-card-name-version">
+              <h4 className='vz-addon-card-name'>
+                {this.props.plugin.getName()}
+              </h4>
+              <span className="vz-addon-card-version">
+                {this.props.plugin.getVersion()}
+              </span>
+            </div>
+            <div className="vz-addon-card-author">
+              {this.props.plugin.getAuthor()}
+            </div>
+          </div>
+          
           <div class='bdc-spacer'></div>
           <div className="vzbdcompat-horizontal">
             {this.props.meta.source &&
@@ -52,9 +65,7 @@ module.exports = class Plugin extends React.Component {
         <Divider />
 
         <div className="vzbdcompat-marginOnTop vzbdcompat-author">
-             Author: {this.props.plugin.getAuthor()};<br></br>
-             Version: {this.props.plugin.getVersion()};<br></br>
-             Description: {this.props.plugin.getDescription()}
+            {this.props.plugin.getDescription()}
         </div>
         {/* <Details
           svgSize={24} license=''
