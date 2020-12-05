@@ -1,7 +1,7 @@
-/*'use strict'
+'use strict'
 
 const { React } = require('@vizality/webpack')
-const { Modal } = require('@vizality/components/modal')
+const { Modal } = require('@vizality/components')
 const { getModuleByDisplayName } = require('@vizality/webpack')
 const { close: closeModal } = require('@vizality/modal')
 
@@ -35,4 +35,3 @@ module.exports = class PluginSettings extends React.Component {
     )
   }
 }
-*/

@@ -21,7 +21,14 @@ module.exports = class PluginList extends React.Component {
 
     return (
       <div className='vizality-entities-manage vizality-text'>
-        <div className='vizality-entities-manage-header'>
+        <div className='vizality-entities-manage-header vzbdcompat-search-open-plugins-folder'>
+          <TextInput
+            value={this.state.search}
+            onChange={(val) => this.setState({ search: val })}
+            placeholder='What are you looking for?'
+          >
+            Search plugins
+          </TextInput>
           <Button
             onClick={() => openPath(window.ContentManager.pluginsFolder)}
             size={Button.Sizes.SMALL}
@@ -30,15 +37,6 @@ module.exports = class PluginList extends React.Component {
           >
             Open Plugins Folder
           </Button>
-        </div>
-        <div className='vizality-entities-manage-search'>
-          <TextInput
-            value={this.state.search}
-            onChange={(val) => this.setState({ search: val })}
-            placeholder='What are you looking for?'
-          >
-            Search plugins
-          </TextInput>
         </div>
 
         <div className='vizality-entities-manage-items'>
