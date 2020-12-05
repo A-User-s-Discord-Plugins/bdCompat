@@ -1,4 +1,4 @@
-/*'use strict'
+'use strict'
 
 const { React } = require('@vizality/webpack')
 const { SwitchItem } = require('@vizality/components/settings')
@@ -22,4 +22,3 @@ module.exports = class Settings extends React.Component {
     )
   }
 }
-*/

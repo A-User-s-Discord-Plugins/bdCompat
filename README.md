@@ -7,7 +7,7 @@ Forked from https://github.com/Juby210/bdCompat
 
 ## Installation
 
-Clone this repository to your Powercord install's plugins folder
+Clone this repository to your Vizality install's plugins folder
 
 ```
 git clone https://git.gent.ooo/abUwUser/vz-bdCompat.git
