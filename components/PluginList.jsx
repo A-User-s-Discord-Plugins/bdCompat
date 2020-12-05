@@ -3,7 +3,7 @@
 const { shell: { openPath } } = require('electron')
 
 const { React } = require('@vizality/webpack')
-const { Button } = require('@vizality/components')
+const { Button, Divider } = require('@vizality/components')
 const { TextInput } = require('@vizality/components/settings')
 
 const Plugin = require('./Plugin.jsx')
@@ -37,6 +37,8 @@ module.exports = class PluginList extends React.Component {
           >
             Open Plugins Folder
           </Button>
+          <Divider />
+          <h3 className="vzbdcompat-marginOnTop"><b>NOTE:</b> There is an wild issue where the switch doesn't update if you enable a plugin. So, after enabling a plugin, please exit from this settings page and then go back to it. <br></br><br></br>- A user</h3>
         </div>
 
         <div className='vizality-entities-manage-items'>
