@@ -1,28 +1,28 @@
-'use strict'
+/*'use strict'
 
 const { shell: { openExternal } } = require('electron')
 
-const { React, i18n: { Messages } }  = require('powercord/webpack')
-const { Tooltip, Switch, Button, Card, Divider } = require('powercord/components')
-const { open: openModal } = require('powercord/modal')
+const { React, i18n: { Messages } }  = require('@vizality/webpack')
+const { Tooltip, Switch, Button, Card, Divider } = require('@vizality/components')
+const { open: openModal } = require('@vizality/modal')
 
 const SettingsModal = require('./PluginSettings.jsx')
 
-let Details = () => <div>Failed to load powercord module manager's details component!</div>
+let Details = () => <div>Failed to load vizality module manager's details component!</div>
 try {
   Details = require('../../pc-moduleManager/components/parts/Details')
 } catch (e) {
-  console.error('Failed to load powercord module manager\'s details component! Settings won\'t render correctly.', e)
+  console.error('Failed to load vizality module manager\'s details component! Settings won\'t render correctly.', e)
 }
 
 module.exports = class Plugin extends React.Component {
   render () {
     this.props.enabled = this.props.meta.__started
 
-    // We're reusing Powercord's plugin manager classes
+    // We're reusing vizality's plugin manager classes
     return (
-      <Card className='powercord-plugin powercord-product bdc-plugin'>
-        <div className='powercord-plugin-header powercord-product-header'>
+      <Card className='vizality-plugin vizality-product bdc-plugin'>
+        <div className='vizality-plugin-header vizality-product-header'>
           <h4>{this.props.plugin.getName()}</h4>
           <Tooltip>
             <div>
@@ -42,7 +42,7 @@ module.exports = class Plugin extends React.Component {
         <div class='bdc-spacer'></div>
         <Divider />
 
-        <div className='powercord-plugin-footer powercord-product-footer bdc-justifystart'>
+        <div className='vizality-plugin-footer vizality-product-footer bdc-justifystart'>
           {this.props.meta.source &&
             <Button
               onClick={() => openExternal(this.props.meta.source)}
@@ -108,3 +108,4 @@ module.exports = class Plugin extends React.Component {
     this.forceUpdate()
   }
 }
+*/

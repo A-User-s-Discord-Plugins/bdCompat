@@ -1,25 +1,25 @@
 'use strict'
 
-const { Plugin } = require('powercord/entities')
+const { Plugin } = require('@vizality/entities')
 const process = require('process')
 
 const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
 const Settings = require('./components/Settings')
 
 module.exports = class BDCompat extends Plugin {
-  startPlugin () {
+  onLoad () {
     this.loadStylesheet('style.css')
     this.defineGlobals()
 
-    powercord.api.settings.registerSettings('bdCompat', {
+    /*vizality.api.settings.registerSettings('bdCompat', {
       category: 'bdCompat',
       label: 'BetterDiscord Plugins',
       render: Settings
-    });
+    });*/
   }
 
-  pluginWillUnload () {
-    powercord.api.settings.unregisterSettings('bdCompat') 
+  onStop () {
+    //vizality.api.settings.unregisterSettings('bdCompat') 
     if (window.pluginModule) window.pluginModule.destroy()
     if (window.ContentManager) window.ContentManager.destroy()
     this.destroyGlobals()

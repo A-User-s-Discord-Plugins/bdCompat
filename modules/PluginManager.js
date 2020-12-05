@@ -1,7 +1,7 @@
 const { join } = require('path')
 const { Module } = require('module')
 const { existsSync, readdirSync, unlinkSync } = require('fs')
-const { getModule, FluxDispatcher } = require('powercord/webpack')
+const { getModule, FluxDispatcher } = require('@vizality/webpack')
 
 // Allow loading from discords node_modules
 Module.globalPaths.push(join(process.resourcesPath, 'app.asar/node_modules'))
@@ -22,7 +22,7 @@ module.exports = class BDPluginManager {
     window.BdApi.linkJS('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
       .then(async () => {
         this.__log('Loaded jQuery')
-        const ConnectionStore = await getModule(['isTryingToConnect', 'isConnected'])
+        const ConnectionStore = await getModule('isTryingToConnect', 'isConnected')
         const listener = () => {
           if (!ConnectionStore.isConnected()) return
           ConnectionStore.removeChangeListener(listener)

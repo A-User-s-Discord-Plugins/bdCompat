@@ -1,7 +1,7 @@
-'use strict'
+/*'use strict'
 
-const { React } = require('powercord/webpack')
-const { SwitchItem } = require('powercord/components/settings')
+const { React } = require('@vizality/webpack')
+const { SwitchItem } = require('@vizality/components/settings')
 
 const PluginList = require('./PluginList.jsx')
 
@@ -22,3 +22,4 @@ module.exports = class Settings extends React.Component {
     )
   }
 }
+*/

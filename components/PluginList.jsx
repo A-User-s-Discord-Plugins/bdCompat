@@ -1,10 +1,10 @@
-'use strict'
+/*'use strict'
 
 const { shell: { openPath } } = require('electron')
 
-const { React } = require('powercord/webpack')
-const { Button } = require('powercord/components')
-const { TextInput } = require('powercord/components/settings')
+const { React } = require('@vizality/webpack')
+const { Button } = require('@vizality/components')
+const { TextInput } = require('@vizality/components/settings')
 
 const Plugin = require('./Plugin.jsx')
 
@@ -20,8 +20,8 @@ module.exports = class PluginList extends React.Component {
     const plugins = this.__getPlugins()
 
     return (
-      <div className='powercord-entities-manage powercord-text'>
-        <div className='powercord-entities-manage-header'>
+      <div className='vizality-entities-manage vizality-text'>
+        <div className='vizality-entities-manage-header'>
           <Button
             onClick={() => openPath(window.ContentManager.pluginsFolder)}
             size={Button.Sizes.SMALL}
@@ -31,7 +31,7 @@ module.exports = class PluginList extends React.Component {
             Open Plugins Folder
           </Button>
         </div>
-        <div className='powercord-entities-manage-search'>
+        <div className='vizality-entities-manage-search'>
           <TextInput
             value={this.state.search}
             onChange={(val) => this.setState({ search: val })}
@@ -41,7 +41,7 @@ module.exports = class PluginList extends React.Component {
           </TextInput>
         </div>
 
-        <div className='powercord-entities-manage-items'>
+        <div className='vizality-entities-manage-items'>
           {plugins.map((plugin) =>
             <Plugin
               plugin={plugin.plugin}
@@ -88,3 +88,4 @@ module.exports = class PluginList extends React.Component {
     this.forceUpdate()
   }
 }
+*/

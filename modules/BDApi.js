@@ -4,9 +4,9 @@ const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
 
-const { getModule, getAllModules, getModuleByDisplayName, React, ReactDOM } = require('powercord/webpack')
-const { getOwnerInstance, getReactInstance } = require('powercord/util')
-const { inject, uninject } = require('powercord/injector')
+const { getModule, getAllModules, getModuleByDisplayName, React, ReactDOM } = require('@vizality/webpack')
+const { getOwnerInstance, getReactInstance } = require('@vizality/util')
+const { patch, unpatch } = require('@vizality/patcher')
 
 const PluginData = {}
 
@@ -58,7 +58,7 @@ class BdApi {
     return BdApi.__elemParent('style')
   }
 
-  static injectCSS (id, css) {
+  static patchCSS (id, css) {
     const style = document.createElement('style')
 
     style.id = `bd-style-${BdApi.escapeID(id)}`
@@ -183,7 +183,7 @@ class BdApi {
   static async showConfirmationModal(title, children, options = {}) {
     const { onConfirm = () => {}, onCancel = () => {}, confirmText = 'Okay', cancelText = 'Cancel', danger = false, key } = options
 
-    const { openModal } = await getModule(['openModal', 'updateModal'])
+    const { openModal } = await getModule('openModal', 'updateModal')
     const Markdown = await getModuleByDisplayName('Markdown')
     const ConfirmModal = await getModuleByDisplayName('ConfirmModal')
 
@@ -338,8 +338,8 @@ class BdApi {
   
 
     const patches = []
-    if (options.before) patches.push(BdApi.__injectBefore({ what, methodName, options, displayName }, origMethod))
-    if (options.after) patches.push(BdApi.__injectAfter({ what, methodName, options, displayName }, origMethod))
+    if (options.before) patches.push(BdApi.__patchBefore({ what, methodName, options, displayName }, origMethod))
+    if (options.after) patches.push(BdApi.__patchAfter({ what, methodName, options, displayName }, origMethod))
     if (displayName != 'MissingName') what[methodName].displayName = displayName
 
     const finalCancelPatch = () => patches.forEach((patch) => patch())
@@ -347,15 +347,15 @@ class BdApi {
     return finalCancelPatch
   }
 
-  static __injectBefore (data, origMethod) {
+  static __patchBefore (data, origMethod) {
     const patchID = `bd-patch-before-${data.displayName.toLowerCase()}-${crypto.randomBytes(4).toString('hex')}`
 
     const cancelPatch = () => {
       if (!data.options.silent) BdApi.__log(`Unpatching before of ${data.displayName} ${data.methodName}`)
-      uninject(patchID)
+      unpatch(patchID)
     }
 
-    inject(patchID, data.what, data.methodName, function beforePatch (args, res) {
+    patch(patchID, data.what, data.methodName, function beforePatch (args, res) {
       const patchData = {
         // eslint-disable-next-line no-invalid-this
         thisObject: this,
@@ -380,15 +380,15 @@ class BdApi {
     return cancelPatch
   }
 
-  static __injectAfter (data, origMethod) {
+  static __patchAfter (data, origMethod) {
     const patchID = `bd-patch-after-${data.displayName.toLowerCase()}-${crypto.randomBytes(4).toString('hex')}`
 
     const cancelPatch = () => {
       if (!data.options.silent) BdApi.__log(`Unpatching after of ${data.displayName} ${data.methodName}`)
-      uninject(patchID)
+      unpatch(patchID)
     }
 
-    inject(patchID, data.what, data.methodName, function afterPatch (args, res) {
+    patch(patchID, data.what, data.methodName, function afterPatch (args, res) {
       const patchData = {
         // eslint-disable-next-line no-invalid-this
         thisObject: this,

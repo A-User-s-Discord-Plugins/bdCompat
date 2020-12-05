@@ -1,9 +1,9 @@
-'use strict'
+/*'use strict'
 
-const { React } = require('powercord/webpack')
-const { Modal } = require('powercord/components/modal')
-const { getModuleByDisplayName } = require('powercord/webpack')
-const { close: closeModal } = require('powercord/modal')
+const { React } = require('@vizality/webpack')
+const { Modal } = require('@vizality/components/modal')
+const { getModuleByDisplayName } = require('@vizality/webpack')
+const { close: closeModal } = require('@vizality/modal')
 
 const FormTitle = getModuleByDisplayName('FormTitle', false)
 
@@ -35,3 +35,4 @@ module.exports = class PluginSettings extends React.Component {
     )
   }
 }
+*/
