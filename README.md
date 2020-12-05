@@ -1,6 +1,7 @@
-# bdCompat
+# vz- bdCompat
 
-Compatibility layer for running BetterDiscord plugins in Powercord
+Compatibility layer for running BetterDiscord plugins in Powercord<br>
+Forked from https://github.com/Juby210/bdCompat
 
 [![Screenshot showing a list of BetterDiscord plugins](https://i.imgur.com/xaAOdSE.png)](https://i.imgur.com/xaAOdSE.png)
 
