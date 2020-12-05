@@ -8,7 +8,7 @@ const Settings = require('./components/Settings')
 
 module.exports = class BDCompat extends Plugin {
   onStart () {
-    // this.loadStylesheet('style.css')
+    this.injectStyles('style.css')
     this.defineGlobals()
 
     vizality.api.settings.registerAddonSettings({

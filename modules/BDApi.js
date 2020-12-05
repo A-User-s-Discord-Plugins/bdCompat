@@ -1,5 +1,7 @@
 'use strict'
 
+const { logger: { log, error } } = require('@vizality/util');
+
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
