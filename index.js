@@ -7,8 +7,8 @@ const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modu
 const Settings = require('./components/Settings')
 
 module.exports = class BDCompat extends Plugin {
-  onLoad () {
-    this.loadStylesheet('style.css')
+  onStart () {
+    // this.loadStylesheet('style.css')
     this.defineGlobals()
 
     /*vizality.api.settings.registerSettings('bdCompat', {
