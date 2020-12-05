@@ -85,8 +85,8 @@ module.exports = class Plugin extends React.Component {
 
             <Icon name='Gear'
               className="vzbdcompat-cursor-pointer"
-              /*disabled={!this.props.enabled}*/
               onClick={() => openModal(() => <SettingsModal plugin={this.props.plugin} />)}
+              tooltip= "Settings"
             >
             </Icon>
           }
