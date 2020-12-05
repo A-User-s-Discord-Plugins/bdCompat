@@ -120,7 +120,6 @@
 .vzbdcompat-marginOnTop{
 	margin-top: 20px;
 }
-
 .vzbdcompat-card{
 	cursor: default;
 }
@@ -131,8 +130,4 @@
 
 .vzbdcompat-cursor-pointer{
 	cursor: pointer !important;
-}
-
-.vzbdcompat-search-open-plugins-folder{
-	/*idk what to do here*/
 }

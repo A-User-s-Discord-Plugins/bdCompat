@@ -62,7 +62,6 @@ module.exports = class Plugin extends React.Component {
               }
             </div>
         </div>
-        <Divider />
 
         <div className="vzbdcompat-marginOnTop vzbdcompat-author">
             {this.props.plugin.getDescription()}
