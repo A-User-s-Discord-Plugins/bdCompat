@@ -1,4 +1,4 @@
-# vz- bdCompat
+# vz-bdCompat
 
 Compatibility layer for running BetterDiscord plugins in Powercord<br>
 Forked from https://github.com/Juby210/bdCompat
