@@ -38,7 +38,6 @@ module.exports = class PluginList extends React.Component {
             Open Plugins Folder
           </Button>
           <Divider />
-          <h3 className="vzbdcompat-marginOnTop"><b>NOTE:</b> There is an wild issue where the switch doesn't update if you enable a plugin. So, after enabling a plugin, please exit from this settings page and then go back to it. <br></br><br></br>- A user</h3>
         </div>
 
         <div className='vizality-entities-manage-items'>
@@ -46,7 +45,7 @@ module.exports = class PluginList extends React.Component {
             <Plugin
               plugin={plugin.plugin}
               meta={plugin}
-
+              
               onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
               onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
               onDelete={() => this.__deletePlugin(plugin.plugin.getName())}

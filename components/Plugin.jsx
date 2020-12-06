@@ -8,7 +8,7 @@ const { open: openModal } = require('@vizality/modal')
 
 const SettingsModal = require('./PluginSettings.jsx')
 
-let Details = () => <div>Failed to load vizality module manager's details component!</div>
+// let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {
 //   Details = require('../../pc-moduleManager/components/parts/Details')
 // } catch (e) {
@@ -17,9 +17,9 @@ let Details = () => <div>Failed to load vizality module manager's details compon
 
 module.exports = class Plugin extends React.Component {
   render () {
-    this.props.enabled = this.props.meta.__started
+    this.pluginStatus = window.pluginModule.isEnabled(this.props.plugin.getName())
 
-    // We're reusing powercord's plugin manager classes
+    // We're reusing vizality's classes
     return (
       <Card className='vz-addon-card powercord-product bdc-plugin vzbdcompat-card'>
         <div className='vzbdcompat-center vz-addon-card-content-wrapper powercord-product-header'>
@@ -104,19 +104,19 @@ module.exports = class Plugin extends React.Component {
             <div class='bdc-margin'></div>
           }
 
-          <Switch value={this.props.enabled} onChange={() => this.togglePlugin()} />
+          <Switch value={this.pluginStatus} onChange={() => this.togglePlugin()} onClick={() => this.forceUpdate()} />
         </div>
       </Card>
     )
   }
 
   togglePlugin () {
-    if (this.props.enabled) {
+    if (this.pluginStatus) {
       this.props.onDisable()
+      
     } else {
       this.props.onEnable()
     }
-
     this.forceUpdate()
   }
 }
