@@ -91,7 +91,7 @@ module.exports = class Plugin extends React.Component {
           </Button>
 
           <div class='bdc-spacer'></div>
-          {typeof this.props.plugin.getSettingsPanel === 'function' && this.props.enabled &&
+          {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
 
             <Icon name='Gear'
               className="vzbdcompat-cursor-pointer"
