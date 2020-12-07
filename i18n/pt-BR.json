@@ -1,0 +1,18 @@
+{
+    "BDCOMAPT_INDEV_NOTICE": {
+        "title": "Plugin em desenvolvimento",
+        "description": "Este plugin está em desenvolvimento e contém muitos bugs que estamos tentando consetar. Por favor, seja paciente e espere por bugs inesperados. Também você pode experimentar problemas de perfomance. Caso isto ocorra, por favor reinicie o Discord pressionando CTRL + R"
+    },
+    "BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP": "Forçar desativação caso o plugin falhe ao parar",
+    "BDCOMAPT_PLUGIN_SEARCH": {
+        "title": "Pesquisar por plugins",
+        "placeholder": "Procurando por algo?"
+    },
+    "BDCOMAPT_OPEN_PLUGINS_FOLDER": "Abrir pasta de plugins",
+    "BDCOMAPT_PLUGIN": {
+        "plugin_links": {
+            "source_code": "Código Fonte",
+            "website": "Website"
+        }
+    }
+}

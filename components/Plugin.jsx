@@ -46,7 +46,7 @@ module.exports = class Plugin extends React.Component {
                 size={Button.Sizes.SMALL}
                 color={Button.Colors.TRANSPARENT}
               >
-                Source code
+                {Messages.BDCOMAPT_PLUGIN.plugin_links.source_code}
               </Button>
               }
 
@@ -57,7 +57,7 @@ module.exports = class Plugin extends React.Component {
                 size={Button.Sizes.SMALL}
                 color={Button.Colors.TRANSPARENT}
               >
-                Website
+                {Messages.BDCOMAPT_PLUGIN.plugin_links.website}
               </Button>
               }
             </div>

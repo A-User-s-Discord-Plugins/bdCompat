@@ -2,7 +2,7 @@
 
 const { shell: { openPath } } = require('electron')
 
-const { React } = require('@vizality/webpack')
+const { React, i18n: { Messages } } = require('@vizality/webpack')
 const { Button, Divider } = require('@vizality/components')
 const { TextInput } = require('@vizality/components/settings')
 
@@ -25,9 +25,9 @@ module.exports = class PluginList extends React.Component {
           <TextInput
             value={this.state.search}
             onChange={(val) => this.setState({ search: val })}
-            placeholder='What are you looking for?'
+            placeholder={Messages.BDCOMAPT_PLUGIN_SEARCH.placeholder}
           >
-            Search plugins
+            {Messages.BDCOMAPT_PLUGIN_SEARCH.title}
           </TextInput>
           <Button
             onClick={() => openPath(window.ContentManager.pluginsFolder)}
@@ -35,7 +35,7 @@ module.exports = class PluginList extends React.Component {
             color={Button.Colors.PRIMARY}
             look={Button.Looks.OUTLINED}
           >
-            Open Plugins Folder
+            {Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
           </Button>
           <Divider />
         </div>

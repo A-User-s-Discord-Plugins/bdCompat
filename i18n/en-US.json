@@ -1,0 +1,18 @@
+{
+    "BDCOMAPT_INDEV_NOTICE": {
+        "title":"Plugin in development",
+        "description": "This plugin is in development stages and it contains a lot of bugs that we're trying to fix it. Please be patient and expect bugs. Also maybe you see some perfomance issues. When you see that happening, please refresh Discord by pressing CTRL + R"
+    },
+    "BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP": "Disable plugin when failed to stop",
+    "BDCOMAPT_PLUGIN_SEARCH": {
+        "title": "Search plugins",
+        "placeholder": "What are you looking for?"
+    },
+    "BDCOMAPT_OPEN_PLUGINS_FOLDER": "Open Plugins Folder",
+    "BDCOMAPT_PLUGIN": {
+        "plugin_links": {
+            "source_code": "Source code",
+            "website": "Website"
+        }
+    }
+}

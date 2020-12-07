@@ -1,6 +1,8 @@
 'use strict'
 
 const { Plugin } = require('@vizality/entities')
+const { i18n: { Messages } } = require('@vizality/webpack')
+const i18n = require('./i18n');
 const process = require('process')
 
 const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
@@ -16,6 +18,8 @@ module.exports = class BDCompat extends Plugin {
       heading: 'BetterDiscord Plugins',
       render: Settings
     })
+
+    vizality.api.i18n.injectAllStrings(i18n);
   }
 
   onStop () {
