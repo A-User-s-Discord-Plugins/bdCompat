@@ -131,3 +131,14 @@
 .vzbdcompat-cursor-pointer{
 	cursor: pointer !important;
 }
+
+/* html::after{
+	content: "my mission is to explode";
+	position: fixed;
+	top: 0;
+	left: 0;
+	color: #fff;
+	font-size: 90px;
+	z-index: 1000;
+	pointer-events: none;
+} */

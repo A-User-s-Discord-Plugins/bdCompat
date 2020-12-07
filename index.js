@@ -12,7 +12,7 @@ module.exports = class BDCompat extends Plugin {
     this.defineGlobals()
 
     vizality.api.settings.registerAddonSettings({
-      id: this.entityID,
+      id: this.addonId,
       heading: 'BetterDiscord Plugins',
       render: Settings
     })
