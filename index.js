@@ -19,7 +19,7 @@ module.exports = class BDCompat extends Plugin {
   }
 
   onStop () {
-    vizality.api.settings.unregisterSettings(this.entityID) 
+    vizality.api.settings.unregisterSettings(this.addonId) 
     if (window.pluginModule) window.pluginModule.destroy()
     if (window.ContentManager) window.ContentManager.destroy()
     this.destroyGlobals()
