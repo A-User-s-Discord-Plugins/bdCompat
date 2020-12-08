@@ -1,4 +1,4 @@
-# vz-bdCompat
+# bdCompat for Vizality
 
 Compatibility layer for running BetterDiscord plugins in Vizality<br>
 Forked from https://github.com/Juby210/bdCompat
