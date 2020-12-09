@@ -3,7 +3,7 @@
 Compatibility layer for running BetterDiscord plugins in Vizality<br>
 Forked from https://github.com/Juby210/bdCompat
 
-[![Screenshot showing a list of BetterDiscord plugins](https://i.imgur.com/xaAOdSE.png)](https://i.imgur.com/xaAOdSE.png)
+![Screenshot showing a list of BetterDiscord plugins](https://auser.owns-a-furry.club/bfddF92.png)
 
 ## Installation
 
