@@ -21,7 +21,7 @@ module.exports = class Settings extends React.Component {
           }}
           type={FormNotice.Types.WARNING}
           title={Messages.BDCOMAPT_INDEV_NOTICE.title}
-          body={<div>{Messages.BDCOMAPT_INDEV_NOTICE.description} <Anchor>{Messages.BDCOMAPT_INDEV_NOTICE.openFAQ}</Anchor></div>}
+          body={<div>{Messages.BDCOMAPT_INDEV_NOTICE.description} <Anchor href="https://github.com/A-User-s-Discord-Plugins/bdCompat#faq">{Messages.BDCOMAPT_INDEV_NOTICE.openFAQ}</Anchor></div>}
         /><br></br><br></br>
         <SwitchItem value={this.props.getSetting('disableWhenStopFailed')}
         onChange={() => this.props.toggleSetting('disableWhenStopFailed')}>
