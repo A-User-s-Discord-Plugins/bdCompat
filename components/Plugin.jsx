@@ -6,7 +6,7 @@ const { React, i18n: { Messages } }  = require('@vizality/webpack')
 const { Tooltip, Switch, Button, Card, Divider, Icon} = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
-const SettingsModal = require('./PluginSettings.jsx')
+const SettingsModal = require('./BDPluginSettings.jsx')
 
 // let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {
@@ -66,12 +66,6 @@ module.exports = class Plugin extends React.Component {
         <div className="vzbdcompat-marginOnTop vzbdcompat-author">
             {this.props.plugin.getDescription()}
         </div>
-        {/* <Details
-          svgSize={24} license=''
-          author={this.props.plugin.getAuthor()}
-          version={this.props.plugin.getVersion()}
-          description={this.props.plugin.getDescription()}
-        /> */}
 
         <div class='bdc-spacer'></div>
         <Divider />
