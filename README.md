@@ -28,12 +28,7 @@ If you want EnhancedDiscord plugins support, you can use [EDPluginsLoader](https
 ## FAQ
 #### [BetterImageViewer](https://github.com/1Lighty/BetterDiscordPlugins/tree/master/Plugins/BetterImageViewer) tries to zoom VZ plugin/theme icons
 In [commit 91a2a96](https://github.com/vizality/vizality/commit/91a2a964ff61c52500560aff4713a8facf607051), `LazyImage` was added to VZ plugin/theme icons. This causes a problem to BIV, since it uses `LazyImage` to add the zooming functionality.<br />
-~~There is a simple fix to that: Open BIV in Notepad or in any text editor and add this code after line 1998:~~ Nevermind, the fix only breaks BIV's zooming functionality
-<!--
-```js
-if (_this.props.className = "vz-addon-card-icon-image-wrapper") return;
-```
--->
+I (A user) made a manual fix for BIV 1.5.1. [Download here](https://gist.github.com/abUwUser/c4cb8309b3c55fcd8fd4171c0c7b95c0) the patched plugin. Also I give all credits to [Lighty](https://github.com/1Lighty) for making this amazing plugin.
 
 What the issue looks like:
 ![The issue](https://auser.owns-a-furry.club/2f403Ea.gif)
