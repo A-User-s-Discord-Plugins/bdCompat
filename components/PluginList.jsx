@@ -6,7 +6,8 @@ const { React, i18n: { Messages } } = require('@vizality/webpack')
 const { Button, Divider } = require('@vizality/components')
 const { TextInput } = require('@vizality/components/settings')
 
-const Plugin = require('./Plugin.jsx')
+const ListPlugin = require('./plugin-lists/PluginList.jsx')
+const CardPlugin = require('./plugin-lists/PluginCard.jsx')
 
 module.exports = class PluginList extends React.Component {
   constructor (props) {
@@ -43,11 +44,12 @@ module.exports = class PluginList extends React.Component {
 
         <div className='vizality-entities-manage-items'>
           {
-            plugins.map((plugin) =>
-              settingManager.getSetting('showMethod', "List") == "List"
-              ?
-                //here it'll render the setting if showMethod is setted to List
-                <Plugin
+            //es6 goes brrrrrrrrrrrrr
+            settingManager.getSetting('showMethod', "List") == "List"
+            ?
+              //here it'll render the setting if showMethod is setted to List
+              plugins.map((plugin) =>
+                <ListPlugin
                   plugin={plugin.plugin}
                   meta={plugin}
 
@@ -55,10 +57,23 @@ module.exports = class PluginList extends React.Component {
                   onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
                   onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
                 />
-              : //here it'll render the setting if showMethod is setted to Card
-                <div> i suck </div>
-            )
-            
+              )
+            : 
+              //here it'll render the setting if showMethod is setted to Card
+              <div className="vz-addons-list-items">
+                {
+                  plugins.map((plugin) =>
+                    <CardPlugin
+                      plugin={plugin.plugin}
+                      meta={plugin}
+
+                      onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
+                      onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
+                      onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
+                    />
+                  )
+                }
+              </div>
           }
           
         </div>
