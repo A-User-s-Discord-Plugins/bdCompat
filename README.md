@@ -28,7 +28,19 @@ If you want EnhancedDiscord plugins support, you can use [EDPluginsLoader](https
 ## FAQ
 #### [BetterImageViewer](https://github.com/1Lighty/BetterDiscordPlugins/tree/master/Plugins/BetterImageViewer) tries to zoom VZ plugin/theme icons
 In [commit 91a2a96](https://github.com/vizality/vizality/commit/91a2a964ff61c52500560aff4713a8facf607051), `LazyImage` was added to VZ plugin/theme icons. This causes a problem to BIV, since it uses `LazyImage` to add the zooming functionality.<br />
-I (A user) made a manual fix for BIV 1.5.1. [Download here](https://gist.github.com/abUwUser/c4cb8309b3c55fcd8fd4171c0c7b95c0) the patched plugin. Also I give all credits to [Lighty](https://github.com/1Lighty) for making this amazing plugin.
+I (A user) made a manual fix for BIV 1.5.1. [Download here](https://gist.github.com/abUwUser/c4cb8309b3c55fcd8fd4171c0c7b95c0) the patched plugin. Also I give all credits to [Lighty](https://github.com/1Lighty) for making this amazing plugin. <br/>
 
 What the issue looks like:
 ![The issue](https://auser.owns-a-furry.club/2f403Ea.gif)
+
+#### Plugins reloads at random times / infinitely
+Yeah, I know that issue, but I didn't figured out exatly why this happens. My guesses it has be done with Vizality's hot reload feature, that is reloading BDCompat, making so to reload all BD plugins.
+
+#### Lag when enabling a plugin
+Now this time i have no idea to why this issue happens. If you figure out why, please make a PR and ping me in Discord talking about your guesses / how you fixed it<br/>
+
+What the issue looks like:
+![](https://auser.owns-a-furry.club/67A67bc.gif)
+
+#### Hey! I found one issue! How i can contact you?
+You can join in my [Discord Server](https://discord.gg/jGmSTkk) and report in [#support](https://discord.com/channels/662100872406499348/662111506254659615)
