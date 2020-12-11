@@ -6,7 +6,7 @@ const { React, i18n: { Messages } }  = require('@vizality/webpack')
 const { Tooltip, Switch, Button, Card, Divider, Icon} = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
-const PluginSettingsModal = require('./BDPluginSettings.jsx')
+const PluginSettingsModal = require('../modals/BDPluginSettings.jsx')
 
 // let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {

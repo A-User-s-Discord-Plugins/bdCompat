@@ -5,7 +5,7 @@ const { FormNotice, Anchor, Button} = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
 const PluginList = require('./PluginList.jsx')
-const SettingsModal = require('./PluginSettingsModal.jsx')
+const SettingsModal = require('./modals/PluginSettingsModal.jsx')
 
 module.exports = class Settings extends React.Component {
   constructor (props) {
