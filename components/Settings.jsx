@@ -53,13 +53,7 @@ module.exports = class Settings extends React.Component {
         <PluginList pluginManager={window.pluginModule} settings={this.props} />
 
         <div className="description-3_Ncsb vzbdcompat-horizontal vzbdcompat-thanks">
-          Ported with 
-          <Image
-            width= {25}
-            height= {25}
-            src= "/assets/0483f2b648dcc986d01385062052ae1c.svg"
-            zoomable= {false}
-        /> by A user</div>
+          Ported with <Image width={25} height={25} src="/assets/0483f2b648dcc986d01385062052ae1c.svg" zoomable={false} /> by A user</div>
       </div>
     )
   }
