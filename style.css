@@ -145,3 +145,13 @@
 .vzbdcompat-little-space{
 	margin-left: 15px;
 }
+
+.vzbdcompat-thanks{
+	margin-top: 100px;
+	align-items: center;
+	justify-content: center;
+}
+
+.vzbdcompat-thanks .imageWrapper-2p5ogY{
+	margin: 0 4px;
+}
