@@ -6,8 +6,8 @@ const { React, i18n: { Messages } } = require('@vizality/webpack')
 const { Button, Divider } = require('@vizality/components')
 const { TextInput } = require('@vizality/components/settings')
 
-const ListPlugin = require('./plugin-lists/PluginList.jsx')
-const CardPlugin = require('./plugin-lists/PluginCard.jsx')
+const ListPlugin = require('./plugin-lists/List.jsx')
+const CardPlugin = require('./plugin-lists/Card.jsx')
 
 module.exports = class PluginList extends React.Component {
   constructor (props) {
@@ -48,16 +48,20 @@ module.exports = class PluginList extends React.Component {
             settingManager.getSetting('showMethod', "List") == "List"
             ?
               //here it'll render the setting if showMethod is setted to List
-              plugins.map((plugin) =>
-                <ListPlugin
-                  plugin={plugin.plugin}
-                  meta={plugin}
+              <div className="vz-addons-list" vz-display="compact">
+                {
+                  plugins.map((plugin) =>
+                    <ListPlugin
+                      plugin={plugin.plugin}
+                      meta={plugin}
 
-                  onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
-                  onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
-                  onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
-                />
-              )
+                      onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
+                      onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
+                      onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
+                    />
+                  )
+                }
+              </div>
             : 
               //here it'll render the setting if showMethod is setted to Card
               <div className="vz-addons-list-items">

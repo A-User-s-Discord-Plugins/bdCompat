@@ -9,12 +9,6 @@
 	display: flex;
 	justify-content: flex-start;
 }
-.bdc-plugin .metadata > div {
-	width: 50% !important;
-}
-.bdc-plugin .metadata > .license {
-	display: none;
-}
 
 /* Toast CSS */
 
@@ -115,6 +109,7 @@
 
 .vzbdcompat-horizontal{
 	display: flex;
+	flex-direction: row;
 }
 
 .vzbdcompat-marginOnTop{
@@ -132,13 +127,20 @@
 	cursor: pointer !important;
 }
 
-/* html::after{
-	content: "my mission is to explode";
-	position: fixed;
-	top: 0;
-	left: 0;
-	color: #fff;
-	font-size: 90px;
-	z-index: 1000;
-	pointer-events: none;
-} */
+.vzbdcompat-header{
+	height: 42px;
+}
+
+.vz-addons-list[vz-display=compact] .vzbdcompat-plugin{
+	height: 70px;
+	align-items: center;
+	padding: 10px 20px;
+}
+
+:root .vzbdcompat-plugin-version, .vzbdcompat-link{
+	margin-right: 5px !important;
+}
+
+.vzbdcompat-little-space{
+	margin-right: 15px;
+}

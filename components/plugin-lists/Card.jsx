@@ -19,8 +19,8 @@ module.exports = class Plugin extends React.Component {
 
         // We're reusing vizality's classes
         return (
-            <Card className='vz-addon-card powercord-product bdc-plugin vzbdcompat-card'>
-                <div className='vzbdcompat-center vz-addon-card-content-wrapper powercord-product-header'>
+            <div className='vz-addon-card vzbdcompat-card'>
+                <div className='vzbdcompat-center vz-addon-card-content-wrapper vzbdcompat-header'>
                     <div className="vz-addon-card-metadata">
                         <div className="vz-addon-card-name-version">
                             <h4 className='vz-addon-card-name'>
@@ -98,7 +98,7 @@ module.exports = class Plugin extends React.Component {
 
                     <Switch value={this.pluginStatus} onChange={() => this.togglePlugin()} onClick={() => this.forceUpdate()} />
                 </div>
-            </Card>
+            </div>
         )
     }
 
