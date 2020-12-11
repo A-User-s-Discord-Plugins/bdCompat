@@ -1,6 +1,6 @@
 'use strict'
 
-const { React, i18n: { Messages }, getModule, getModuleByDisplayName } = require('@vizality/webpack')
+const { React, i18n: { Messages }, getModuleByDisplayName } = require('@vizality/webpack')
 const { FormNotice, Anchor, Button, Divider } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
