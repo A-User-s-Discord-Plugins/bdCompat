@@ -35,7 +35,7 @@ module.exports = class Settings extends React.Component {
             color={Button.Colors.BRAND}
             look={Button.Looks.FILLED}
           >
-            Settings
+            {Messages.BDCOMPAT_SETTINGS.settings_button}
           </Button>
           <Button
             onClick={() => openPath(window.ContentManager.pluginsFolder)}

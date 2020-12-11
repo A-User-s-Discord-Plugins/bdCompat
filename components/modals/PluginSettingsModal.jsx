@@ -16,7 +16,7 @@ module.exports = class PluginSettings extends React.Component {
         return (<>
             <Modal size={Modal.Sizes.LARGE}>
                 <Modal.Header>
-                    <FormTitle tag={FormTitle.Tags.H4}>BDCompat Settings</FormTitle>
+                    <FormTitle tag={FormTitle.Tags.H4}>{Messages.BDCOMAPT_SETTINGS.title}</FormTitle>
                     <Modal.CloseButton onClick={closeModal} />
                 </Modal.Header>
                 <Modal.Content>
@@ -27,20 +27,20 @@ module.exports = class PluginSettings extends React.Component {
                             this.props.stuff.toggleSetting('disableWhenStopFailed')
                             this.forceUpdate()
                         }}>
-                        {Messages.BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP}
+                        {Messages.BDCOMAPT_SETTINGS.disable_plugin_failed_stop}
                     </SwitchItem>
 
                     <RadioGroup
                         options={[
-                            {name: "List", value: "List"},
-                            {name: "Card", value: "Card"}
+                            { name: Messages.BDCOMAPT_SETTINGS.display_method.list, value: "List"},
+                            { name: Messages.BDCOMAPT_SETTINGS.display_method.card, value: "Card"}
                         ]}
                         value={this.props.stuff.getSetting('showMethod', "Card")}
                         onChange={e => {
                             this.props.stuff.updateSetting('showMethod', e.value)
                             this.forceUpdate();
                         }}
-                    > Display method </RadioGroup>
+                    > {Messages.BDCOMAPT_SETTINGS.display_method.title} </RadioGroup>
                 </Modal.Content>
             </Modal>
         </>)
