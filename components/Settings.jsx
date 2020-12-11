@@ -3,6 +3,7 @@
 const { React, i18n: { Messages }, getModuleByDisplayName } = require('@vizality/webpack')
 const { FormNotice, Anchor, Button, Divider } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
+const { shell } = require('electron')
 
 const PluginList = require('./PluginList.jsx')
 const SettingsModal = require('./modals/PluginSettingsModal.jsx')
@@ -38,7 +39,9 @@ module.exports = class Settings extends React.Component {
             {Messages.BDCOMPAT_SETTINGS.settings_button}
           </Button>
           <Button
-            onClick={() => openPath(window.ContentManager.pluginsFolder)}
+            onClick={() => {
+              shell.openPath(window.ContentManager.pluginsFolder)
+            }}
             size={Button.Sizes.SMALL}
             color={Button.Colors.PRIMARY}
             look={Button.Looks.OUTLINED}
