@@ -24,7 +24,7 @@ module.exports = class PluginSettings extends React.Component {
                     <SwitchItem
                         value={this.settings.getSetting('disableWhenStopFailed', true)}
                         onChange={function () {
-                            this.props.settings.toggleSetting('disableWhenStopFailed')
+                            this.settings.toggleSetting('disableWhenStopFailed')
                             this.forceUpdate()
                         }}>
                         {Messages.BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP}
