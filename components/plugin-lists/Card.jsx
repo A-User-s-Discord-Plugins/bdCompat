@@ -4,7 +4,7 @@ const { React, i18n: { Messages } } = require('@vizality/webpack')
 const { Tooltip, Switch, Button, Card, Divider, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
-const PluginSettingsModal = require('../modals/BDPluginSettings.jsx')
+const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
 
 // let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {
@@ -70,11 +70,16 @@ module.exports = class Plugin extends React.Component {
 
                 <div className='vzbdcompat-marginOnTop vzbdcompat-horizontal powercord-plugin-footer powercord-product-footer bdc-justifystart'>
                     <Button
-                        onClick={() => window.BdApi.showConfirmationModal(
-                            'Delete Plugin',
-                            `Are you sure you want to delete **${this.props.plugin.getName()}**? This can't be undone!`,
-                            { confirmText: 'Delete', danger: true, onConfirm: this.props.onDelete }
-                        )}
+                        onClick={(e) => {
+                            e.stopPropagation(); //Fix issue where the modal opens 2 times
+                            window.BdApi.showConfirmationModal(
+                                'Delete Plugin',
+                                `Are you sure you want to delete **${this.props.plugin.getName()}**? This can't be undone!`,
+                                { confirmText: 'Delete', danger: true, onConfirm: this.props.onDelete }
+                            )
+                            }
+                        }
+
                         color={Button.Colors.RED}
                         look={Button.Looks.FILLED}
                         size={Button.Sizes.SMALL}
@@ -87,7 +92,11 @@ module.exports = class Plugin extends React.Component {
 
                         <Icon name='Gear'
                             className="vzbdcompat-cursor-pointer"
-                            onClick={() => openModal(() => <PluginSettingsModal plugin={this.props.plugin} />)}
+                            onClick={(e) => {
+                                    e.stopPropagation(); //Fix issue where the modal opens 2 times
+                                    openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)
+                                }
+                            }
                             tooltip="Settings"
                         >
                         </Icon>

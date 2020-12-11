@@ -1,7 +1,7 @@
 {
     "BDCOMAPT_INDEV_NOTICE": {
         "title": "Plugin em desenvolvimento",
-        "description": "Este plugin está em desenvolvimento e contém muitos bugs que estamos tentando consetar. Por favor, seja paciente e espere por bugs inesperados. Também você pode experimentar problemas de perfomance. Caso isto ocorra, por favor reinicie o Discord pressionando CTRL + R. Abrir o DevTools (CTRL + SHIFT + I) pode ajudar também a corrigir o problema de perfomance ",
+        "description": "Este plugin está em desenvolvimento e contém muitos bugs que estamos tentando consetar. Por favor, seja paciente e espere por bugs inesperados. Também você pode experimentar problemas de perfomance. Caso isto ocorra, por favor reinicie o Discord pressionando CTRL + R. Abrir o DevTools (CTRL + SHIFT + I) pode ajudar também a corrigir o problema de perfomance por um curto período de tempo ",
         "openFAQ": "Você pode checar nosso FAQ clicando aqui"
     },
     "BDCOMAPT_PLUGIN_SEARCH": {
