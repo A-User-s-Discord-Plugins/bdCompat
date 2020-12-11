@@ -3,14 +3,14 @@
 Compatibility layer for running BetterDiscord plugins in Vizality<br>
 Forked from https://github.com/Juby210/bdCompat
 
-![Screenshot showing a list of BetterDiscord plugins](https://auser.owns-a-furry.club/bfddF92.png)
+![Screenshot showing a list of BetterDiscord plugins](https://auser.owns-a-furry.club/emcA46B1c.png)
 
 ## Installation
 
 Clone this repository to your Vizality install's plugins folder
 
 ```
-git clone https://git.gent.ooo/abUwUser/vz-bdCompat.git
+git clone https://github.com/A-User-s-Discord-Plugins/bdCompat
 ```
 
 ## Installing BD plugins

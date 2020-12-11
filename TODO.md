@@ -3,4 +3,5 @@
 - [x] Revisit the idea of replacing the require function to allow directly requiring the plugin files without creating temporary files
 - [ ] Hot reloading of plugins
   - Should already be possible, just needs a function that unloads and loads, and a watcher.
-- [ ] Add Settings
+  - VZ Already have that, but it reloads ALL the plugins, causing an perfomance problem
+- [X] Add Settings
