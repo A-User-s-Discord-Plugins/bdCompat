@@ -17,7 +17,7 @@
     },
     "BDCOMPAT_SETTINGS": {
         "title": "Configurações do BDCompat",
-        "settings_button": "Config.",
+        "settings_button": "Configurações",
         "disable_plugin_failed_stop": "Forçar desativação caso o plugin falhe ao parar",
         "display_method": {
             "title": "Aparência dos plugins",
