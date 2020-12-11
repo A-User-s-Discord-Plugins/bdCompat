@@ -1,7 +1,7 @@
 {
     "BDCOMAPT_INDEV_NOTICE": {
         "title":"Plugin in development",
-        "description": "This plugin is in development stages and it contains a lot of bugs that we're trying to fix it. Please be patient and expect bugs. Also maybe you see some perfomance issues. When you see that happening, please refresh Discord by pressing CTRL + R. ",
+        "description": "This plugin is in development stages and it contains a lot of bugs that we're trying to fix it. Please be patient and expect bugs. Also maybe you see some perfomance issues. When you see that happening, please refresh Discord by pressing CTRL + R. The perfomance issue can also be fixed if you open DevTools (CTRL + SHIFT + I). ",
         "openFAQ":"You can check our FAQ for more information"
     },
     "BDCOMAPT_PLUGIN_SEARCH": {
