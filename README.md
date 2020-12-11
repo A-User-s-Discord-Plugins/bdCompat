@@ -40,7 +40,7 @@ Yeah, I know that issue, but I didn't figured out exatly why this happens. My gu
 Now this time i have no idea to why this issue happens. If you figure out why, please make a PR and ping me in Discord talking about your guesses / how you fixed it<br/>
 
 What the issue looks like:
-![](https://auser.owns-a-furry.club/67A67bc.gif)
+![The issue](https://auser.owns-a-furry.club/67A67bc.gif)
 
 #### Hey! I found one issue! How i can contact you?
 You can join in my [Discord Server](https://discord.gg/jGmSTkk) and report in [#support](https://discord.com/channels/662100872406499348/662111506254659615)
