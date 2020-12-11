@@ -4,7 +4,6 @@
         "description": "Este plugin está em desenvolvimento e contém muitos bugs que estamos tentando consetar. Por favor, seja paciente e espere por bugs inesperados. Também você pode experimentar problemas de perfomance. Caso isto ocorra, por favor reinicie o Discord pressionando CTRL + R. ",
         "openFAQ": "Você pode checar nosso FAQ clicando aqui"
     },
-    "BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP": "Forçar desativação caso o plugin falhe ao parar",
     "BDCOMAPT_PLUGIN_SEARCH": {
         "title": "Pesquisar por plugins",
         "placeholder": "Procurando por algo?"
@@ -14,6 +13,16 @@
         "plugin_links": {
             "source_code": "Código Fonte",
             "website": "Website"
+        }
+    },
+    "BDCOMPAT_SETTINGS": {
+        "title": "Configurações do BDCompat",
+        "settings_button": "Config.",
+        "disable_plugin_failed_stop": "Forçar desativação caso o plugin falhe ao parar",
+        "display_method": {
+            "title": "Aparência dos plugins",
+            "list": "Lista",
+            "card": "Blocos"
         }
     }
 }
