@@ -6,7 +6,7 @@ const { React, i18n: { Messages } }  = require('@vizality/webpack')
 const { Tooltip, Switch, Button, Card, Divider, Icon} = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
-const SettingsModal = require('./BDPluginSettings.jsx')
+const PluginSettingsModal = require('./BDPluginSettings.jsx')
 
 // let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {
@@ -89,7 +89,7 @@ module.exports = class Plugin extends React.Component {
 
             <Icon name='Gear'
               className="vzbdcompat-cursor-pointer"
-              onClick={() => openModal(() => <SettingsModal plugin={this.props.plugin} />)}
+              onClick={() => openModal(() => <PluginSettingsModal plugin={this.props.plugin} />)}
               tooltip= "Settings"
             >
             </Icon>

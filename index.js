@@ -1,7 +1,6 @@
 'use strict'
 
 const { Plugin } = require('@vizality/entities')
-const { i18n: { Messages } } = require('@vizality/webpack')
 const i18n = require('./i18n');
 const process = require('process')
 

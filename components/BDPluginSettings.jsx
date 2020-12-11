@@ -7,7 +7,7 @@ const { close: closeModal } = require('@vizality/modal')
 
 const FormTitle = getModuleByDisplayName('FormTitle', false)
 
-module.exports = class PluginSettings extends React.Component {
+module.exports = class BDPluginSettings extends React.Component {
   constructor (props) {
     super(props)
     this.settingsRef = el => {
@@ -23,7 +23,7 @@ module.exports = class PluginSettings extends React.Component {
     const { plugin } = this.props
 
     return (
-      <Modal size={Modal.Sizes.MEDIUM}>
+      <Modal size={Modal.Sizes.LARGE}>
         <Modal.Header>
           <FormTitle tag={FormTitle.Tags.H4}>{plugin.getName()} Settings</FormTitle>
           <Modal.CloseButton onClick={closeModal}/>
