@@ -31,21 +31,12 @@ module.exports = class PluginList extends React.Component {
           >
             {Messages.BDCOMAPT_PLUGIN_SEARCH.title}
           </TextInput>
-          <Button
-            onClick={() => openPath(window.ContentManager.pluginsFolder)}
-            size={Button.Sizes.SMALL}
-            color={Button.Colors.PRIMARY}
-            look={Button.Looks.OUTLINED}
-          >
-            {Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
-          </Button>
-          <Divider />
         </div>
 
         <div className='vizality-entities-manage-items'>
           {
             //es6 goes brrrrrrrrrrrrr
-            settingManager.getSetting('showMethod', "List") == "List"
+            settingManager.getSetting('showMethod', "Card") == "List"
             ?
               //here it'll render the setting if showMethod is setted to List
               <div className="vz-addons-list" vz-display="compact">

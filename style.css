@@ -115,7 +115,8 @@
 .vzbdcompat-marginOnTop{
 	margin-top: 20px;
 }
-.vzbdcompat-card{
+
+.vzbdcompat-plugin{
 	cursor: default;
 }
 
@@ -142,5 +143,5 @@
 }
 
 .vzbdcompat-little-space{
-	margin-right: 15px;
+	margin-left: 15px;
 }

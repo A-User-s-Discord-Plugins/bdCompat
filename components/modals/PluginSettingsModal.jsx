@@ -35,7 +35,7 @@ module.exports = class PluginSettings extends React.Component {
                             {name: "List", value: "List"},
                             {name: "Card", value: "Card"}
                         ]}
-                        value={this.props.stuff.getSetting('showMethod', "List")}
+                        value={this.props.stuff.getSetting('showMethod', "Card")}
                         onChange={e => {
                             this.props.stuff.updateSetting('showMethod', e.value)
                             this.forceUpdate();
