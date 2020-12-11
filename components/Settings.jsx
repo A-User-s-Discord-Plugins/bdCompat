@@ -26,14 +26,14 @@ module.exports = class Settings extends React.Component {
           body={<div>{Messages.BDCOMAPT_INDEV_NOTICE.description} <Anchor href="https://github.com/A-User-s-Discord-Plugins/bdCompat#faq">{Messages.BDCOMAPT_INDEV_NOTICE.openFAQ}</Anchor></div>}
         /><br></br><br></br>
         <Button
-          onClick={() => openModal(() => <SettingsModal settingStuff={this.props} />)}
+          onClick={() => openModal(() => <SettingsModal stuff={this.props} />)}
           size={Button.Sizes.SMALL}
           color={Button.Colors.PRIMARY}
           look={Button.Looks.OUTLINED}
         >
           Open Settings
         </Button>
-        <PluginList pluginManager={window.pluginModule} />
+        <PluginList pluginManager={window.pluginModule} settings={this.props} />
       </div>
     )
   }

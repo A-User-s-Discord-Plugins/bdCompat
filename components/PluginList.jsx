@@ -18,6 +18,7 @@ module.exports = class PluginList extends React.Component {
   }
   render () {
     const plugins = this.__getPlugins()
+    const settingManager = this.props.settings
 
     return (
       <div className='vizality-entities-manage vizality-text'>
@@ -41,16 +42,25 @@ module.exports = class PluginList extends React.Component {
         </div>
 
         <div className='vizality-entities-manage-items'>
-          {plugins.map((plugin) =>
-            <Plugin
-              plugin={plugin.plugin}
-              meta={plugin}
-              
-              onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
-              onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
-              onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
-            />
-          )}
+          {
+            plugins.map((plugin) =>
+              settingManager.getSetting('showMethod', "List") == "List"
+              ?
+                //here it'll render the setting if showMethod is setted to List
+                <Plugin
+                  plugin={plugin.plugin}
+                  meta={plugin}
+
+                  onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
+                  onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
+                  onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
+                />
+              : //here it'll render the setting if showMethod is setted to Card
+                <div> i suck </div>
+            )
+            
+          }
+          
         </div>
       </div>
     )

@@ -5,15 +5,15 @@ const { getModuleByDisplayName} = require('@vizality/webpack')
 
 const FormTitle = getModuleByDisplayName('FormTitle', false)
 
+// let config = vizality.manager.plugins.get('bdCompat').settings
+
 module.exports = class PluginSettings extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
-        this.settings = this.props.settingStuff
-        
-        return (
+        return (<>
             <Modal size={Modal.Sizes.LARGE}>
                 <Modal.Header>
                     <FormTitle tag={FormTitle.Tags.H4}>BDCompat Settings</FormTitle>
@@ -22,9 +22,9 @@ module.exports = class PluginSettings extends React.Component {
                 <Modal.Content>
                     
                     <SwitchItem
-                        value={this.settings.getSetting('disableWhenStopFailed', true)}
-                        onChange={function () {
-                            this.settings.toggleSetting('disableWhenStopFailed')
+                        value={this.props.stuff.getSetting('disableWhenStopFailed', true)}
+                        onChange={() => {
+                            this.props.stuff.toggleSetting('disableWhenStopFailed')
                             this.forceUpdate()
                         }}>
                         {Messages.BDCOMAPT_DISABLE_PLUGIN_FAILED_STOP}
@@ -35,17 +35,27 @@ module.exports = class PluginSettings extends React.Component {
                             {name: "List", value: "List"},
                             {name: "Card", value: "Card"}
                         ]}
-                        value={this.settings.getSetting('showMethod', "List")}
-                        onChange={function(e){
-                            this.settings.updateSetting('showMethod', e.value)
-                            this.forceUpdate()
+                        value={this.props.stuff.getSetting('showMethod', "List")}
+                        onChange={e => {
+                            this.props.stuff.updateSetting('showMethod', e.value)
+                            this.forceUpdate();
                         }}
-                    />
-
+                    > Display method </RadioGroup>
                 </Modal.Content>
             </Modal>
-        )
+        </>)
     }
 
-    // this.props.stuff.updateSetting(setting, value)
+    getConfig (setting, fallbackValue) {
+        this.props.stuff.getSetting(setting, fallbackValue)
+    }
+    setConfig (setting, value) {
+        this.props.stuff.updateSetting(setting, value)
+    }
+    toggleConfig (setting) {
+        this.props.stuff.toggleSetting(setting)
+    }
+    update () {
+        this.forceUpdate()
+    }
 }
