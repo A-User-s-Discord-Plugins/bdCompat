@@ -1,7 +1,5 @@
-const { shell: { openExternal } } = require('electron')
-
 const { React, i18n: { Messages }, contextMenu: { openContextMenu }} = require('@vizality/webpack')
-const { Tooltip, Switch, Button, Card, Divider, Icon } = require('@vizality/components')
+const { Switch, Button,  Divider} = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
 const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
@@ -40,31 +38,6 @@ module.exports = class Plugin extends React.Component {
                         <div className="vz-addon-card-author">
                             {this.props.plugin.getAuthor()}
                         </div>
-                    </div>
-
-                    <div class='bdc-spacer'></div>
-                    <div className="vzbdcompat-horizontal">
-                        {/* {this.props.meta.source &&
-                            <Button
-                                onClick={() => openExternal(this.props.meta.source)}
-                                look={Button.Looks.LINK}
-                                size={Button.Sizes.SMALL}
-                                color={Button.Colors.TRANSPARENT}
-                            >
-                                {Messages.BDCOMAPT_PLUGIN.plugin_links.source_code}
-                            </Button>
-                        }
-
-                        {this.props.meta.website &&
-                            <Button
-                                onClick={() => openExternal(this.props.meta.website)}
-                                look={Button.Looks.LINK}
-                                size={Button.Sizes.SMALL}
-                                color={Button.Colors.TRANSPARENT}
-                            >
-                                {Messages.BDCOMAPT_PLUGIN.plugin_links.website}
-                            </Button>
-                        } */}
                     </div>
                 </div>
 

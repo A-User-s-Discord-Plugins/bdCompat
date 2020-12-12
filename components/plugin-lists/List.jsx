@@ -1,9 +1,7 @@
 'use strict'
 
-const { shell } = require('electron')
-
 const { React, i18n: { Messages }, contextMenu: { openContextMenu } }  = require('@vizality/webpack')
-const { Switch, Button, Icon } = require('@vizality/components')
+const { Switch, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
 const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
