@@ -44,7 +44,7 @@ module.exports = class Plugin extends React.Component {
 
                     <div class='bdc-spacer'></div>
                     <div className="vzbdcompat-horizontal">
-                        {this.props.meta.source &&
+                        {/* {this.props.meta.source &&
                             <Button
                                 onClick={() => openExternal(this.props.meta.source)}
                                 look={Button.Looks.LINK}
@@ -64,7 +64,7 @@ module.exports = class Plugin extends React.Component {
                             >
                                 {Messages.BDCOMAPT_PLUGIN.plugin_links.website}
                             </Button>
-                        }
+                        } */}
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ module.exports = class Plugin extends React.Component {
                 <Divider />
 
                 <div className='vzbdcompat-marginOnTop vzbdcompat-horizontal powercord-plugin-footer powercord-product-footer bdc-justifystart'>
-                    <Button
+                    {/* <Button
                         onClick={(e) => {
                             e.stopPropagation(); //Fix issue where the modal opens 2 times
                             window.BdApi.showConfirmationModal(
@@ -92,22 +92,23 @@ module.exports = class Plugin extends React.Component {
                         size={Button.Sizes.SMALL}
                     >
                         {Messages.APPLICATION_CONTEXT_MENU_UNINSTALL}
-                    </Button>
+                    </Button> */}
+                    {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
+                        <Button
+                            color={Button.Colors.BRAND}
+                            look={Button.Looks.FILLED}
+                            size={Button.Sizes.SMALL}
+                            onClick={(e) => {
+                                e.stopPropagation(); //Fix issue where the modal opens 2 times
+                                openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)
+                            }}
+                            className="vzbdcompat-settings-button"
+                        >
+                            {Messages.BDCOMPAT_SETTINGS.settings_button}
+                        </Button>
+                    }
 
                     <div class='bdc-spacer'></div>
-                    {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
-
-                        <Icon name='Gear'
-                            className="vzbdcompat-cursor-pointer"
-                            onClick={(e) => {
-                                    e.stopPropagation(); //Fix issue where the modal opens 2 times
-                                    openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)
-                                }
-                            }
-                            tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
-                        >
-                        </Icon>
-                    }
                     {typeof this.props.plugin.getSettingsPanel === 'function' &&
                         <div class='bdc-margin'></div>
                     }

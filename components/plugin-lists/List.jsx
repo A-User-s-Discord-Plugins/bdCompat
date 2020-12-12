@@ -41,7 +41,7 @@ module.exports = class Plugin extends React.Component {
         </div>
 
         <div className="vzbdcompat-horizontal">
-          <Icon name='Trash'
+          {/* <Icon name='Trash'
             tooltip="Delete"
             color="#f04747"
             className="vzbdcompat-cursor-pointer"
@@ -54,7 +54,7 @@ module.exports = class Plugin extends React.Component {
               )
             }
             }
-          />
+          /> */}
 
           {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
 
