@@ -39,21 +39,6 @@ module.exports = class Plugin extends React.Component {
         </div>
 
         <div className="vzbdcompat-horizontal">
-          {/* <Icon name='Trash'
-            tooltip="Delete"
-            color="#f04747"
-            className="vzbdcompat-cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation(); //Fix issue where the modal opens 2 times
-              window.BdApi.showConfirmationModal(
-                'Delete Plugin',
-                `Are you sure you want to delete **${this.props.plugin.getName()}**? This can't be undone!`,
-                { confirmText: 'Delete', danger: true, onConfirm: this.props.onDelete }
-              )
-            }
-            }
-          /> */}
-
           {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
 
             <Icon name='Gear'
