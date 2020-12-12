@@ -18,7 +18,7 @@ module.exports = class Plugin extends React.Component {
 
         // We're reusing vizality's classes
         return (
-            <div className='vz-addon-card vzbdcompat-card'
+            <div className='vz-addon-card vzbdcompat-plugin'
                 onContextMenu={e => openContextMenu(e, () => <BDPluginContextMenu
                     plugin={this.props.plugin}
                     meta={this.props.meta}
