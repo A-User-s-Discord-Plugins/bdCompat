@@ -1,27 +1,29 @@
 'use strict'
 
-const { shell: { openExternal } } = require('electron')
+const { shell } = require('electron')
 
-const { React, i18n: { Messages } }  = require('@vizality/webpack')
-const { Switch, Button, Icon, Anchor} = require('@vizality/components')
+const { React, i18n: { Messages }, contextMenu: { openContextMenu } }  = require('@vizality/webpack')
+const { Switch, Button, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
 const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
-
-// let Details = () => <div>Failed to load vizality module manager's details component!</div>
-// try {
-//   Details = require('../../pc-moduleManager/components/parts/Details')
-// } catch (e) {
-//   console.error('Failed to load vizality module manager\'s details component! Settings won\'t render correctly.', e)
-// }
+const BDPluginContextMenu = require('../context-menus/Plugins.jsx')
 
 module.exports = class Plugin extends React.Component {
   render () {
     this.pluginStatus = window.pluginModule.isEnabled(this.props.plugin.getName())
 
+    console.log(openModal)
+
     // We're reusing vizality's classes
     return (
-      <div className='vz-addon-card vzbdcompat-horizontal vzbdcompat-plugin'>
+      <div className='vz-addon-card vzbdcompat-horizontal vzbdcompat-plugin'
+        onContextMenu={e => openContextMenu(e, () => <BDPluginContextMenu
+          plugin={this.props.plugin}
+          meta={this.props.meta}
+           />
+          )}
+        >
         <div className='vzbdcompat-center vz-addon-card-content-wrapper'>
           <div className="vz-addon-card-metadata">
             <div className="vz-addon-card-name-version">
@@ -31,17 +33,6 @@ module.exports = class Plugin extends React.Component {
               <span className="vz-addon-card-version vzbdcompat-plugin-version">
                 {this.props.plugin.getVersion()}
               </span>
-              {this.props.meta.source &&
-                <Anchor className="vzbdcompat-link" onClick={() => openExternal(this.props.meta.source)}>
-                  {Messages.BDCOMAPT_PLUGIN.plugin_links.source_code}
-                </Anchor>
-              }
-
-              {this.props.meta.website &&
-                <Anchor className="vzbdcompat-link" onClick={() => openExternal(this.props.meta.website)}>
-                  {Messages.BDCOMAPT_PLUGIN.plugin_links.website}
-                </Anchor>
-              }
             </div>
             <div className="vz-addon-card-author">
               {this.props.plugin.getAuthor()}
@@ -69,7 +60,7 @@ module.exports = class Plugin extends React.Component {
 
             <Icon name='Gear'
               className="vzbdcompat-cursor-pointer vzbdcompat-little-space"
-              tooltip="Settings"
+              tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
               onClick={(e) => {
                   e.stopPropagation(); //Fix issue where the modal opens 2 times
                   openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)

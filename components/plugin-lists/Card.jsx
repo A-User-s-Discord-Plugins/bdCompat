@@ -1,10 +1,11 @@
 const { shell: { openExternal } } = require('electron')
 
-const { React, i18n: { Messages } } = require('@vizality/webpack')
+const { React, i18n: { Messages }, contextMenu: { openContextMenu }} = require('@vizality/webpack')
 const { Tooltip, Switch, Button, Card, Divider, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 
 const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
+const BDPluginContextMenu = require('../context-menus/Plugins.jsx')
 
 // let Details = () => <div>Failed to load vizality module manager's details component!</div>
 // try {
@@ -19,7 +20,13 @@ module.exports = class Plugin extends React.Component {
 
         // We're reusing vizality's classes
         return (
-            <div className='vz-addon-card vzbdcompat-card'>
+            <div className='vz-addon-card vzbdcompat-card'
+                onContextMenu={e => openContextMenu(e, () => <BDPluginContextMenu
+                    plugin={this.props.plugin}
+                    meta={this.props.meta}
+                />
+                )}
+                >
                 <div className='vzbdcompat-center vz-addon-card-content-wrapper vzbdcompat-header'>
                     <div className="vz-addon-card-metadata">
                         <div className="vz-addon-card-name-version">
@@ -97,7 +104,7 @@ module.exports = class Plugin extends React.Component {
                                     openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)
                                 }
                             }
-                            tooltip="Settings"
+                            tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
                         >
                         </Icon>
                     }
