@@ -18,14 +18,14 @@ module.exports = class Plugin extends React.Component {
 
         // We're reusing vizality's classes
         return (
-            <div className='vz-addon-card vzbdcompat-plugin'
+            <div className='vz-addon-card vzbdc-plugin'
                 onContextMenu={e => openContextMenu(e, () => <BDPluginContextMenu
                     plugin={this.props.plugin}
                     meta={this.props.meta}
                 />
                 )}
                 >
-                <div className='vzbdcompat-center vz-addon-card-content-wrapper vzbdcompat-header'>
+                <div className='vzbdc-center vz-addon-card-content-wrapper vzbdc-header'>
                     <div className="vz-addon-card-metadata">
                         <div className="vz-addon-card-name-version">
                             <h4 className='vz-addon-card-name'>
@@ -41,14 +41,14 @@ module.exports = class Plugin extends React.Component {
                     </div>
                 </div>
 
-                <div className="vzbdcompat-marginOnTop vzbdcompat-author">
+                <div className="vzbdc-marginOnTop vzbdc-author">
                     {this.props.plugin.getDescription()}
                 </div>
 
                 <div class='bdc-spacer'></div>
                 <Divider />
 
-                <div className='vzbdcompat-marginOnTop vzbdcompat-horizontal powercord-plugin-footer powercord-product-footer bdc-justifystart'>
+                <div className='vzbdc-marginOnTop vzbdc-horizontal powercord-plugin-footer powercord-product-footer bdc-justifystart'>
                     {/* <Button
                         onClick={(e) => {
                             e.stopPropagation(); //Fix issue where the modal opens 2 times
@@ -75,7 +75,7 @@ module.exports = class Plugin extends React.Component {
                                 e.stopPropagation(); //Fix issue where the modal opens 2 times
                                 openModal(() => <BDPluginSettingsModal plugin={this.props.plugin} />)
                             }}
-                            className="vzbdcompat-settings-button"
+                            className="vzbdc-settings-button"
                         >
                             {Messages.BDCOMPAT_SETTINGS.settings_button}
                         </Button>

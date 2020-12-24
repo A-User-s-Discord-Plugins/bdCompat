@@ -39,9 +39,9 @@ module.exports = class Dashboard extends React.Component {
         /><br></br><br></br>
 
         <div className="vz-addons-list-sticky-bar-wrapper">
-          <div className="vz-addons-list-sticky-bar vzbdcompat-aligment-fix">
+          <div className="vz-addons-list-sticky-bar vzbdc-aligment-fix">
             <Icon name='Gear'
-              className="vzbdcompat-cursor-pointer"
+              className="vzbdc-cursor-pointer"
               style={{ display: "flex", justifyContent: "center" }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -56,12 +56,12 @@ module.exports = class Dashboard extends React.Component {
                 query={this.state.search}
                 onChange={(val) => this.setState({ search: val })}
               />
-              <div className="vzbdcompat-little-space">
+              <div className="vzbdc-little-space">
                 <Icon name='Folder'
                   onClick={() => {
                     shell.openPath(window.ContentManager.pluginsFolder)
                   }}
-                  className="vzbdcompat-cursor-pointer"
+                  className="vzbdc-cursor-pointer"
                   tooltip={Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
                 />
               </div>
@@ -109,7 +109,7 @@ module.exports = class Dashboard extends React.Component {
           }
 
         </div>
-        <div className="description-3_Ncsb vzbdcompat-horizontal vzbdcompat-thanks">
+        <div className="description-3_Ncsb vzbdc-horizontal vzbdc-thanks">
           Ported with <Image width={25} height={25} src="/assets/0483f2b648dcc986d01385062052ae1c.svg" zoomable={false} /> by A user</div>
       </div>
     )

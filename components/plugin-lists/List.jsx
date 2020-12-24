@@ -15,20 +15,20 @@ module.exports = class Plugin extends React.Component {
 
     // We're reusing vizality's classes
     return (
-      <div className='vz-addon-card vzbdcompat-horizontal vzbdcompat-plugin'
+      <div className='vz-addon-card vzbdc-horizontal vzbdc-plugin'
         onContextMenu={e => openContextMenu(e, () => <BDPluginContextMenu
           plugin={this.props.plugin}
           meta={this.props.meta}
            />
           )}
         >
-        <div className='vzbdcompat-center vz-addon-card-content-wrapper'>
+        <div className='vzbdc-center vz-addon-card-content-wrapper'>
           <div className="vz-addon-card-metadata">
             <div className="vz-addon-card-name-version">
               <h4 className='vz-addon-card-name'>
                 {this.props.plugin.getName()}
               </h4>
-              <span className="vz-addon-card-version vzbdcompat-plugin-version">
+              <span className="vz-addon-card-version vzbdc-plugin-version">
                 {this.props.plugin.getVersion()}
               </span>
             </div>
@@ -38,11 +38,11 @@ module.exports = class Plugin extends React.Component {
           </div>
         </div>
 
-        <div className="vzbdcompat-horizontal">
+        <div className="vzbdc-horizontal">
           {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
 
             <Icon name='Gear'
-              className="vzbdcompat-cursor-pointer vzbdcompat-little-space"
+              className="vzbdc-cursor-pointer vzbdc-little-space"
               tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
               onClick={(e) => {
                   e.stopPropagation(); //Fix issue where the modal opens 2 times
@@ -53,7 +53,7 @@ module.exports = class Plugin extends React.Component {
             </Icon>
           }
 
-          <div className="vzbdcompat-little-space">
+          <div className="vzbdc-little-space">
             <Switch value={this.pluginStatus}
               onChange={() => this.togglePlugin()}
               onClick={() => this.forceUpdate()}
