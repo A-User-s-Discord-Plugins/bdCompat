@@ -10,7 +10,7 @@ const SettingsModal = require('./modals/PluginSettingsModal.jsx')
 
 const Image = getModuleByDisplayName("Image")
 
-module.exports = class Settings extends React.Component {
+module.exports = class Dashboard extends React.Component {
   constructor (props) {
     super(props)
   }

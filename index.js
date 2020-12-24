@@ -5,7 +5,7 @@ const i18n = require('./i18n');
 const process = require('process')
 
 const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
-const Settings = require('./components/Settings')
+const Dashboard = require('./components/Dashboard')
 
 module.exports = class BDCompat extends Plugin {
   onStart () {
@@ -18,12 +18,12 @@ module.exports = class BDCompat extends Plugin {
 
     // Inject i18n
     vizality.api.i18n.injectAllStrings(i18n);
-    
-    //Inject settings
+
+    //Inject dashboard
     vizality.api.settings.registerAddonSettings({
       id: this.addonId,
       heading: 'BetterDiscord Plugins',
-      render: Settings
+      render: Dashboard
     })
 
     // Check if hot reload is enabled and if it is it'll alert the user
