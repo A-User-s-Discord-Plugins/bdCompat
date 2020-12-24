@@ -156,6 +156,11 @@
 	justify-content: center;
 }
 
+.vzbdcompat-aligment-fix > div:nth-child(1){
+	display: flex;
+	justify-content: center;
+}
+
 .vzbdcompat-thanks .imageWrapper-2p5ogY{
 	margin: 0 4px;
 }

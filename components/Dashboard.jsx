@@ -1,7 +1,7 @@
 'use strict'
 
 const { React, i18n: { Messages }, getModuleByDisplayName } = require('@vizality/webpack')
-const { FormNotice, Anchor, Button, Divider, SearchBar, Icon } = require('@vizality/components')
+const { FormNotice, Anchor, Button, SearchBar, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 const { shell } = require('electron')
 
@@ -39,40 +39,36 @@ module.exports = class Dashboard extends React.Component {
         /><br></br><br></br>
 
         <div className="vz-addons-list-sticky-bar-wrapper">
-          <div className="vz-addons-list-sticky-bar">
+          <div className="vz-addons-list-sticky-bar vzbdcompat-aligment-fix">
             <Icon name='Gear'
               className="vzbdcompat-cursor-pointer"
+              style={{ display: "flex", justifyContent: "center" }}
               onClick={(e) => {
                 e.stopPropagation();
                 openModal(() => <SettingsModal stuff={this.props} />)
               }}
               tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
             />
+            
             <div className="vz-addons-list-search-options">
               <SearchBar
                 placeholder={Messages.BDCOMAPT_PLUGIN_SEARCH.title}
                 query={this.state.search}
                 onChange={(val) => this.setState({ search: val })}
               />
-              <Button
-                onClick={() => {
-                  shell.openPath(window.ContentManager.pluginsFolder)
-                }}
-                size={Button.Sizes.SMALL}
-                color={Button.Colors.PRIMARY}
-                look={Button.Looks.OUTLINED}
-                className="vzbdcompat-little-space"
-              >
-                {Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
-              </Button>
+              <div className="vzbdcompat-little-space">
+                <Icon name='Folder'
+                  onClick={() => {
+                    shell.openPath(window.ContentManager.pluginsFolder)
+                  }}
+                  className="vzbdcompat-cursor-pointer"
+                  tooltip={Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
+                />
+              </div>
             </div>
           </div>
         </div>
-
-        {/* <Divider /> */}
         <br />
-
-        {/* <PluginList pluginManager={window.pluginModule} settings={this.props} /> */}
 
         <div className='vizality-entities-manage-items'>
           {
