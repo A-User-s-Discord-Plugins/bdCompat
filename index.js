@@ -16,15 +16,15 @@ module.exports = class BDCompat extends Plugin {
     //Inject CSS
     this.injectStyles('style.css')
 
+    // Inject i18n
+    vizality.api.i18n.injectAllStrings(i18n);
+    
     //Inject settings
     vizality.api.settings.registerAddonSettings({
       id: this.addonId,
       heading: 'BetterDiscord Plugins',
       render: Settings
     })
-
-    // Inject i18n
-    vizality.api.i18n.injectAllStrings(i18n);
 
     // Check if hot reload is enabled and if it is it'll alert the user
     if (vizality.settings.get('hotReload', false)){
