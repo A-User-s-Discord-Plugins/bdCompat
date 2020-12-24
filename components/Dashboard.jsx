@@ -1,21 +1,30 @@
 'use strict'
 
 const { React, i18n: { Messages }, getModuleByDisplayName } = require('@vizality/webpack')
-const { FormNotice, Anchor, Button, Divider } = require('@vizality/components')
+const { FormNotice, Anchor, Button, Divider, SearchBar, Icon } = require('@vizality/components')
 const { open: openModal } = require('@vizality/modal')
 const { shell } = require('electron')
 
 const PluginList = require('./PluginList.jsx')
 const SettingsModal = require('./modals/PluginSettingsModal.jsx')
+const ListPlugin = require('./plugin-lists/List.jsx')
+const CardPlugin = require('./plugin-lists/Card.jsx')
 
 const Image = getModuleByDisplayName("Image")
 
 module.exports = class Dashboard extends React.Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      search: '',
+    }
   }
 
   render () {
+    const { getSetting } = this.props;
+    const plugins = this.__getPlugins()
+    
     return (
       <div>
         <FormNotice
@@ -29,35 +38,115 @@ module.exports = class Dashboard extends React.Component {
           body={<div>{Messages.BDCOMAPT_INDEV_NOTICE.description} <Anchor href="https://github.com/A-User-s-Discord-Plugins/bdCompat#faq">{Messages.BDCOMAPT_INDEV_NOTICE.openFAQ}</Anchor></div>}
         /><br></br><br></br>
 
-        <div className="vzbdcompat-horizontal">
-          <Button
-            onClick={() => openModal(() => <SettingsModal stuff={this.props} />)}
-            size={Button.Sizes.SMALL}
-            color={Button.Colors.BRAND}
-            look={Button.Looks.FILLED}
-          >
-            {Messages.BDCOMPAT_SETTINGS.settings_button}
-          </Button>
-          <Button
-            onClick={() => {
-              shell.openPath(window.ContentManager.pluginsFolder)
-            }}
-            size={Button.Sizes.SMALL}
-            color={Button.Colors.PRIMARY}
-            look={Button.Looks.OUTLINED}
-            className="vzbdcompat-little-space"
-          >
-            {Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
-          </Button>
+        <div className="vz-addons-list-sticky-bar-wrapper">
+          <div className="vz-addons-list-sticky-bar">
+            <Icon name='Gear'
+              className="vzbdcompat-cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                openModal(() => <SettingsModal stuff={this.props} />)
+              }}
+              tooltip={Messages.BDCOMPAT_SETTINGS.settings_button}
+            />
+            <div className="vz-addons-list-search-options">
+              <SearchBar
+                placeholder={Messages.BDCOMAPT_PLUGIN_SEARCH.title}
+                query={this.state.search}
+                onChange={(val) => this.setState({ search: val })}
+              />
+              <Button
+                onClick={() => {
+                  shell.openPath(window.ContentManager.pluginsFolder)
+                }}
+                size={Button.Sizes.SMALL}
+                color={Button.Colors.PRIMARY}
+                look={Button.Looks.OUTLINED}
+                className="vzbdcompat-little-space"
+              >
+                {Messages.BDCOMAPT_OPEN_PLUGINS_FOLDER}
+              </Button>
+            </div>
+          </div>
         </div>
-        <Divider />
+
+        {/* <Divider /> */}
         <br />
 
-        <PluginList pluginManager={window.pluginModule} settings={this.props} />
+        {/* <PluginList pluginManager={window.pluginModule} settings={this.props} /> */}
 
+        <div className='vizality-entities-manage-items'>
+          {
+            //es6 goes brrrrrrrrrrrrr
+            getSetting('showMethod', "Card") == "List"
+              ?
+              //here it'll render the setting if showMethod is setted to List
+              <div className="vz-addons-list" vz-display="compact">
+                {
+                  plugins.map((plugin) =>
+                    <ListPlugin
+                      plugin={plugin.plugin}
+                      meta={plugin}
+
+                      onEnable={() => window.pluginManager.enablePlugin(plugin.plugin.getName())}
+                      onDisable={() => window.pluginManager.disablePlugin(plugin.plugin.getName())}
+                      onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
+                    />
+                  )
+                }
+              </div>
+              :
+              //here it'll render the setting if showMethod is setted to Card
+              <div className="vz-addons-list-items">
+                {
+                  plugins.map((plugin) =>
+                    <CardPlugin
+                      plugin={plugin.plugin}
+                      meta={plugin}
+
+                      onEnable={() => this.props.pluginManager.enablePlugin(plugin.plugin.getName())}
+                      onDisable={() => this.props.pluginManager.disablePlugin(plugin.plugin.getName())}
+                      onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
+                    />
+                  )
+                }
+              </div>
+          }
+
+        </div>
         <div className="description-3_Ncsb vzbdcompat-horizontal vzbdcompat-thanks">
           Ported with <Image width={25} height={25} src="/assets/0483f2b648dcc986d01385062052ae1c.svg" zoomable={false} /> by A user</div>
       </div>
     )
+  }
+  
+  __getPlugins() {
+    let plugins = Object.keys(window.bdplugins)
+      .map((plugin) => window.bdplugins[plugin])
+
+    if (this.state.search !== '') {
+      const search = this.state.search.toLowerCase()
+
+      plugins = plugins.filter(({ plugin }) =>
+        plugin.getName().toLowerCase().includes(search) ||
+        plugin.getAuthor().toLowerCase().includes(search) ||
+        plugin.getDescription().toLowerCase().includes(search)
+      )
+    }
+
+    return plugins.sort((a, b) => {
+      const nameA = a.plugin.getName().toLowerCase()
+      const nameB = b.plugin.getName().toLowerCase()
+
+      if (nameA < nameB) return -1
+      if (nameA > nameB) return 1
+
+      return 0
+    })
+  }
+
+  __deletePlugin(pluginName) {
+    this.props.pluginManager.delete(pluginName)
+
+    this.forceUpdate()
   }
 }
