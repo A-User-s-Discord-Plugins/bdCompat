@@ -1,0 +1,61 @@
+.vzbdc-horizontal{
+	display: flex;
+	flex-direction: row;
+}
+
+.vzbdc-marginOnTop{
+	margin-top: 20px;
+}
+
+.vzbdc-plugin{
+	cursor: default;
+}
+
+.vzbdc-center{
+	align-items: center;
+}
+
+.vzbdc-cursor-pointer{
+	cursor: pointer !important;
+}
+
+.vzbdc-header{
+	height: 42px;
+}
+
+.vz-addons-list[vz-display=compact] .vzbdc-plugin{
+	height: 70px;
+	align-items: center;
+	padding: 10px 20px;
+}
+
+:root .vzbdc-plugin-version, .vzbdc-link{
+	margin-right: 5px !important;
+}
+
+.vzbdc-little-space{
+	margin-left: 15px;
+}
+
+.vzbdc-right-space{
+	margin-right: 5px;
+}
+
+.vzbdc-thanks{
+	margin-top: 100px;
+	align-items: center;
+	justify-content: center;
+}
+
+.vzbdc-aligment-fix > div:nth-child(1){
+	display: flex;
+	justify-content: center;
+}
+
+.vzbdc-thanks .imageWrapper-2p5ogY{
+	margin: 0 4px;
+}
+
+.vzbdc-thanks .mention{
+	margin-left: 4px;
+}

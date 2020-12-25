@@ -14,7 +14,9 @@ module.exports = class BDCompat extends Plugin {
     this.defineGlobals()
 
     //Inject CSS
-    this.injectStyles('style.css')
+    this.injectStyles('./styles/bdc-original-styles.css')
+    this.injectStyles('./styles/bd-toasts.css')
+    this.injectStyles('./styles/vzbdc-styles.css')
 
     // Inject i18n
     vizality.api.i18n.injectAllStrings(i18n);
