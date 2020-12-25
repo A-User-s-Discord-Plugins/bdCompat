@@ -98,8 +98,8 @@ module.exports = class Dashboard extends React.Component {
                       plugin={plugin.plugin}
                       meta={plugin}
 
-                      onEnable={() => window.pluginManager.pluginManager.enablePlugin(plugin.plugin.getName())}
-                      onDisable={() => window.pluginManager.pluginManager.disablePlugin(plugin.plugin.getName())}
+                      onEnable={() => window.pluginManager.enablePlugin(plugin.plugin.getName())}
+                      onDisable={() => window.pluginManager.disablePlugin(plugin.plugin.getName())}
                       onDelete={() => this.__deletePlugin(plugin.plugin.getName())}
                     />
                   )
