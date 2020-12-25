@@ -1,7 +1,7 @@
 'use strict'
 
 const { React, getModuleByDisplayName } = require('@vizality/webpack')
-const { Modal, ErrorBoundary } = require('@vizality/components')
+const { Modal } = require('@vizality/components')
 const { close: closeModal } = require('@vizality/modal')
 
 const FormTitle = getModuleByDisplayName('FormTitle', false)
@@ -31,6 +31,7 @@ module.exports = class BDPluginSettings extends React.Component {
           <div className='plugin-settings' id={'plugin-settings-' + plugin.getName()}>
             <ErrorBoundary>{this.renderPluginSettings()}</ErrorBoundary>
           </div>
+
         </Modal.Content>
       </Modal>
     )
@@ -49,7 +50,6 @@ module.exports = class BDPluginSettings extends React.Component {
         .split(resolve(__dirname, '..', '..')).join('')
 
       return <div className='vz-error-boundary vz-dashboard-error-boundary colorStandard-2KCXvj'>
-        <h1 class="vz-error-boundary-header vz-dashboard-content-header base-1x0h_U content-3QAtGj">Huh, that's odd.</h1>
         <div class="vz-error-boundary-text">An error occurred while rendering the plugin settings:</div>
         <div className="vz-error-boundary-block vz-error-boundary-error-stack thin-1ybCId scrollerBase-289Jih">{error}</div>
       </div>
