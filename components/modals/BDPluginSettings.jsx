@@ -1,21 +1,16 @@
 'use strict'
 
 const { React, getModuleByDisplayName } = require('@vizality/webpack')
-const { Modal } = require('@vizality/components')
+const { Modal, ErrorBoundary } = require('@vizality/components')
 const { close: closeModal } = require('@vizality/modal')
+const { resolve } = require("path")
 
 const FormTitle = getModuleByDisplayName('FormTitle', false)
 
 module.exports = class BDPluginSettings extends React.Component {
   constructor (props) {
     super(props)
-    this.settingsRef = el => {
-      const { plugin } = this.props
-      if(!el) return
-      const panel = plugin.getSettingsPanel()
-      if(typeof panel == 'string') el.innerHTML = panel
-      else el.append(panel)
-    }
+    
   }
 
   render () {
