@@ -9,10 +9,6 @@ const Dashboard = require('./components/Dashboard')
 
 module.exports = class BDCompat extends Plugin {
   onStart () {
-
-    // Inject BD API stuff
-    this.defineGlobals()
-
     //Inject CSS
     this.injectStyles('./styles/bdc-original-styles.css')
     this.injectStyles('./styles/bd-toasts.css')
@@ -30,7 +26,6 @@ module.exports = class BDCompat extends Plugin {
 
     // Check if hot reload is enabled and if it is it'll alert the user
     if (vizality.settings.get('hotReload', false)){
-
       vizality.api.notices.sendToast('bdcompat-hot-reload-warning', {
         header: "Hot-reload issues",
         content: "Please disable hot reload. bdCompat has perfomance issues with Vizality's hot reload feature and having this enabled can cause Discord to freeze.",
@@ -50,8 +45,10 @@ module.exports = class BDCompat extends Plugin {
           }
         }]
       });
-
     }
+
+    // Inject BD API stuff
+    this.defineGlobals()
   }
 
   onStop () {
