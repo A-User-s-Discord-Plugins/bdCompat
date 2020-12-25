@@ -1,5 +1,3 @@
-'use strict'
-
 const { i18n: { Messages }, React, getModuleByDisplayName } = require('@vizality/webpack')
 const { close: closeModal } = require('@vizality/modal')
 const { settings: { SwitchItem, RadioGroup }, Modal } = require('@vizality/components')
