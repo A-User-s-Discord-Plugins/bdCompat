@@ -3,7 +3,6 @@
 const { Plugin } = require('@vizality/entities')
 const i18n = require('./i18n');
 const process = require('process')
-
 const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
 const Dashboard = require('./components/Dashboard')
 

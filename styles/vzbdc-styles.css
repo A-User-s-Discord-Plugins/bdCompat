@@ -41,14 +41,18 @@
 	margin-right: 5px;
 }
 
-.vzbdc-thanks{
-	margin-top: 100px;
-	align-items: center;
-	justify-content: center;
+:root .vzbdc-bar-wrapper{
+	height: 48px;
 }
 
 .vzbdc-aligment-fix > div:nth-child(1){
 	display: flex;
+	justify-content: center;
+}
+
+.vzbdc-thanks{
+	margin-top: 100px;
+	align-items: center;
 	justify-content: center;
 }
 

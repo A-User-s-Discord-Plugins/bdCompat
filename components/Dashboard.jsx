@@ -37,7 +37,7 @@ module.exports = class Dashboard extends React.Component {
           body={<div>{Messages.BDCOMAPT_INDEV_NOTICE.description} <Anchor href="https://github.com/A-User-s-Discord-Plugins/bdCompat#faq">{Messages.BDCOMAPT_INDEV_NOTICE.openFAQ}</Anchor></div>}
         /><br></br><br></br>
 
-        <div className="vz-addons-list-sticky-bar-wrapper">
+        <div className="vz-addons-list-sticky-bar-wrapper vzbdc-bar-wrapper">
           <div className="vz-addons-list-sticky-bar vzbdc-aligment-fix">
             <Icon name='Gear'
               className="vzbdc-cursor-pointer"
