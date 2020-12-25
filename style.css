@@ -107,64 +107,64 @@
 
 /* VZ BDCompat port vars*/
 
-.vzbdcompat-horizontal{
+.vzbdc-horizontal{
 	display: flex;
 	flex-direction: row;
 }
 
-.vzbdcompat-marginOnTop{
+.vzbdc-marginOnTop{
 	margin-top: 20px;
 }
 
-.vzbdcompat-plugin{
+.vzbdc-plugin{
 	cursor: default;
 }
 
-.vzbdcompat-center{
+.vzbdc-center{
 	align-items: center;
 }
 
-.vzbdcompat-cursor-pointer{
+.vzbdc-cursor-pointer{
 	cursor: pointer !important;
 }
 
-.vzbdcompat-header{
+.vzbdc-header{
 	height: 42px;
 }
 
-.vz-addons-list[vz-display=compact] .vzbdcompat-plugin{
+.vz-addons-list[vz-display=compact] .vzbdc-plugin{
 	height: 70px;
 	align-items: center;
 	padding: 10px 20px;
 }
 
-:root .vzbdcompat-plugin-version, .vzbdcompat-link{
+:root .vzbdc-plugin-version, .vzbdc-link{
 	margin-right: 5px !important;
 }
 
-.vzbdcompat-little-space{
+.vzbdc-little-space{
 	margin-left: 15px;
 }
 
-.vzbdcompat-right-space{
+.vzbdc-right-space{
 	margin-right: 5px;
 }
 
-.vzbdcompat-thanks{
+.vzbdc-thanks{
 	margin-top: 100px;
 	align-items: center;
 	justify-content: center;
 }
 
-.vzbdcompat-aligment-fix > div:nth-child(1){
+.vzbdc-aligment-fix > div:nth-child(1){
 	display: flex;
 	justify-content: center;
 }
 
-.vzbdcompat-thanks .imageWrapper-2p5ogY{
+.vzbdc-thanks .imageWrapper-2p5ogY{
 	margin: 0 4px;
 }
 
-.vzbdcompat-thanks .mention{
+.vzbdc-thanks .mention{
 	margin-left: 4px;
 }

@@ -5,7 +5,6 @@ const { FormNotice, Anchor, Button, SearchBar, Icon } = require('@vizality/compo
 const { open: openModal } = require('@vizality/modal')
 const { shell } = require('electron')
 
-const PluginList = require('./PluginList.jsx')
 const SettingsModal = require('./modals/PluginSettingsModal.jsx')
 const ListPlugin = require('./plugin-lists/List.jsx')
 const CardPlugin = require('./plugin-lists/Card.jsx')
