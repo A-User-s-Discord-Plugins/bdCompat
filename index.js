@@ -1,6 +1,6 @@
 'use strict'
 
-const { Plugin } = require('@vizality/entities')
+import { Plugin, Builtin } from '@vizality/entities'
 const i18n = require('./i18n');
 const process = require('process')
 const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
@@ -16,31 +16,31 @@ module.exports = class BDCompat extends Plugin {
     // Inject i18n
     vizality.api.i18n.injectAllStrings(i18n);
 
-    //Inject dashboard
+    //Inject settings
     this.registerSettings(Dashboard)
 
-    // Check if hot reload is enabled and if it is it'll alert the user
-    if (vizality.settings.get('hotReload', false)){
-      vizality.api.notices.sendToast('bdcompat-hot-reload-warning', {
-        header: "Hot-reload issues",
-        content: "Please disable hot reload. bdCompat has perfomance issues with Vizality's hot reload feature and having this enabled can cause Discord to freeze.",
-        timeout: 16e3,
-        buttons: [{
-          text: "Gonna do later",
-          color: 'grey',
-          onClick: () => {
-            vizality.api.notices.closeToast('bdcompat-hot-reload-warning');
-          }
-        }, {
-          text: "Go to settings",
-          color: 'green',
-          onClick: () => {
-            vizality.api.notices.closeToast('bdcompat-hot-reload-warning');
-            vizality.api.router.navigate('settings');
-          }
-        }]
-      });
-    }
+    // // Check if hot reload is enabled and if it is it'll alert the user
+    // if (vizality.settings.get('hotReload', false)){
+    //   vizality.api.notices.sendToast('bdcompat-hot-reload-warning', {
+    //     header: "Hot-reload issues",
+    //     content: "Please disable hot reload. bdCompat has perfomance issues with Vizality's hot reload feature and having this enabled can cause Discord to freeze.",
+    //     timeout: 16e3,
+    //     buttons: [{
+    //       text: "Gonna do later",
+    //       color: 'grey',
+    //       onClick: () => {
+    //         vizality.api.notices.closeToast('bdcompat-hot-reload-warning');
+    //       }
+    //     }, {
+    //       text: "Go to settings",
+    //       color: 'green',
+    //       onClick: () => {
+    //         vizality.api.notices.closeToast('bdcompat-hot-reload-warning');
+    //         vizality.api.router.navigate('settings');
+    //       }
+    //     }]
+    //   });
+    // }
 
     // Inject BD API stuff
     this.defineGlobals()

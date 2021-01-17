@@ -2,7 +2,7 @@
 const { shell } = require('electron')
 
 const { React, contextMenu: { closeContextMenu }, i18n: { Messages } } = require('@vizality/webpack');
-const { Menu } = require('@vizality/components');
+const { ContextMenu } = require('@vizality/components');
 const { open: openModal } = require('@vizality/modal')
 
 const BDPluginSettingsModal = require('../modals/BDPluginSettings.jsx')
@@ -12,25 +12,25 @@ module.exports = class PluginContextMenu extends React.Component{
         this.pluginStatus = window.pluginModule.isEnabled(this.props.plugin.getName())
 
         return( 
-            <Menu.Menu onClose={closeContextMenu}>
+            <ContextMenu onClose={closeContextMenu}>
                 {this.props.meta.source &&
-                    <Menu.MenuItem
+                    <ContextMenu.Item
                         id='source-code'
                         label={Messages.BDCOMAPT_PLUGIN.plugin_links.source_code}
                         action={() => { shell.openExternal(this.props.meta.source)}}
                     />
                 }
                 {this.props.meta.website &&
-                    <Menu.MenuItem
+                    <ContextMenu.Item
                         id='website'
                         label={Messages.BDCOMAPT_PLUGIN.plugin_links.website}
                         action={() => { shell.openExternal(this.props.meta.website) }}
                     />
                 }
                 
-                <Menu.MenuSeparator />
+                <ContextMenu.Separator />
 
-                <Menu.MenuItem
+                <ContextMenu.Item
                     id='toggle'
                     label={this.pluginStatus ? "Disable" : "Enable"}
                     action={() => {
@@ -43,7 +43,7 @@ module.exports = class PluginContextMenu extends React.Component{
                     }}
                 />
                 {typeof this.props.plugin.getSettingsPanel === 'function' && this.pluginStatus &&
-                    <Menu.MenuItem
+                    <ContextMenu.Item
                         id='settings'
                         label={Messages.BDCOMPAT_SETTINGS.settings_button}
                         action={(e) => {
@@ -52,7 +52,7 @@ module.exports = class PluginContextMenu extends React.Component{
                         }}
                     />
                 }
-                <Menu.MenuItem
+                <ContextMenu.Item
                     id='uninstall'
                     label={Messages.APPLICATION_CONTEXT_MENU_UNINSTALL}
                     color='colorDanger'
@@ -72,7 +72,7 @@ module.exports = class PluginContextMenu extends React.Component{
                         shell.showItemInFolder(`../../plugins/${this.props.plugin.getName()}.plugin.js`)
                     }}
                 /> */}
-            </Menu.Menu>
+            </ContextMenu>
         )
     }
 }
