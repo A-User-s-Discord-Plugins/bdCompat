@@ -1,14 +1,10 @@
-'use strict'
+import path from 'path'
+import fs from 'fs'
+import crypto from 'crypto'
 
-const { logger: { log, error } } = require('@vizality/util');
-
-const path = require('path')
-const fs = require('fs')
-const crypto = require('crypto')
-
-const { getModule, getAllModules, getModuleByDisplayName, React, ReactDOM } = require('@vizality/webpack')
-const { getOwnerInstance, getReactInstance } = require('@vizality/util')
-const { patch, unpatch } = require('@vizality/patcher')
+import { getModule, getAllModules, getModuleByDisplayName, React, ReactDOM } from '@vizality/webpack'
+import { getOwnerInstance, getReactInstance } from '@vizality/util'
+import { patch, unpatch } from '@vizality/patcher'
 
 const PluginData = {}
 

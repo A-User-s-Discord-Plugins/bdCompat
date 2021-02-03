@@ -1,10 +1,11 @@
-const { join } = require('path')
-const { Module } = require('module')
-const { existsSync, readdirSync, unlinkSync } = require('fs')
-const { getModule, FluxDispatcher } = require('@vizality/webpack')
+import path from 'path'
+import fs from 'fs'
+import { webFrame } from 'electron'
+import { Module } from 'module'
+import { getModule, FluxDispatcher } from '@vizality/webpack'
 
 // Allow loading from discords node_modules
-Module.globalPaths.push(join(process.resourcesPath, 'app.asar/node_modules'))
+Module.globalPaths.push(path.join(process.resourcesPath, 'app.asar/node_modules'))
 
 module.exports = class BDPluginManager {
   constructor(pluginsFolder, settings) {
@@ -22,6 +23,15 @@ module.exports = class BDPluginManager {
     window.BdApi.linkJS('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
       .then(async () => {
         this.__log('Loaded jQuery')
+
+
+        if (!window.jQuery) {
+          Object.defineProperty(window, 'jQuery', {
+            get: () => webFrame.top.context.window.jQuery
+          })
+          window.$ = window.jQuery
+        }
+
         const ConnectionStore = await getModule('isTryingToConnect', 'isConnected')
         const listener = () => {
           if (!ConnectionStore.isConnected()) return
@@ -128,7 +138,7 @@ module.exports = class BDPluginManager {
   }
 
   loadAllPlugins() {
-    const plugins = readdirSync(this.folder)
+    const plugins = fs.existsSync(this.folder)
       .filter((pluginFile) => pluginFile.endsWith('.plugin.js'))
       .map((pluginFile) => pluginFile.slice(0, -('.plugin.js'.length)))
 
@@ -136,8 +146,8 @@ module.exports = class BDPluginManager {
   }
 
   loadPlugin(pluginName) {
-    const pluginPath = join(this.folder, `${pluginName}.plugin.js`)
-    if (!existsSync(pluginPath)) return this.__error(null, `Tried to load a nonexistant plugin: ${pluginName}`)
+    const pluginPath = path.join(this.folder, `${pluginName}.plugin.js`)
+    if (!fs.existsSync(pluginPath)) return this.__error(null, `Tried to load a nonexistant plugin: ${pluginName}`)
 
     try {
       // eslint-disable-next-line global-require
@@ -172,7 +182,7 @@ module.exports = class BDPluginManager {
     if (typeof plugin.plugin.unload === 'function') plugin.plugin.unload()
     delete window.bdplugins[pluginName]
 
-    unlinkSync(plugin.__filePath)
+    fs.unlinkSync(plugin.__filePath)
   }
 
   fireEvent (event, ...args) {

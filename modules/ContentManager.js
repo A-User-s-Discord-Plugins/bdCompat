@@ -1,6 +1,6 @@
-const { existsSync, mkdirSync, readFileSync } = require('fs')
-const { join, dirname, resolve, basename } = require('path')
-const { Module } = require('module')
+import { existsSync, mkdirSync, readFileSync } from 'fs'
+import { join, dirname, resolve, basename } from 'path'
+import { Module } from 'module'
 const originalRequire = Module._extensions['.js']
 let _this
 
@@ -82,16 +82,8 @@ module.exports = class ContentManager {
       if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1) // Strip BOM
       const meta = _this.extractMeta(content)
       meta.filename = basename(filename)
+      content += `module.exports = Object.assign(${JSON.stringify(meta)}, { type: module.exports.__esModule ? module.exports.default : module.exports.prototype ? module.exports : ${meta.exports || meta.name} })`
       module._compile(content, filename)
-      if (!module.exports ||
-        (typeof module.exports === 'object' &&
-        !Object.keys(module.exports).length)) {
-        content += `\nmodule.exports = ${JSON.stringify(meta)}; module.exports.type = ${meta.name}`
-        module._compile(content, filename)
-      } else {
-        meta.type = module.exports
-        module.exports = meta
-      }
     }
   }
 }

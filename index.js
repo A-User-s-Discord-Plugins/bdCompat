@@ -1,10 +1,10 @@
 'use strict'
 
-import { Plugin, Builtin } from '@vizality/entities'
-const i18n = require('./i18n');
-const process = require('process')
-const { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } = require('./modules')
-const Dashboard = require('./components/Dashboard')
+import { Plugin } from '@vizality/entities'
+import i18n from './i18n';
+import process from 'process'
+import { AddonAPI, BDApi, BDV2, ContentManager, PluginManager } from './modules'
+import Dashboard from './components/Dashboard'
 
 module.exports = class BDCompat extends Plugin {
   start () {
