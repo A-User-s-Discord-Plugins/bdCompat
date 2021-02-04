@@ -138,7 +138,8 @@ module.exports = class BDPluginManager {
   }
 
   loadAllPlugins() {
-    const plugins = fs.existsSync(this.folder)
+    if (!fs.existsSync(this.folder)) return;
+    const plugins = fs.readdirSync(this.folder)
       .filter((pluginFile) => pluginFile.endsWith('.plugin.js'))
       .map((pluginFile) => pluginFile.slice(0, -('.plugin.js'.length)))
 
