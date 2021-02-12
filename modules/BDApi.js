@@ -65,6 +65,8 @@ class BdApi {
     BdApi.__styleParent.append(style)
   }
 
+  static injectCSS = this.patchCSS;
+
   static clearCSS (id) {
     const elem = document.getElementById(`bd-style-${BdApi.escapeID(id)}`)
     if (elem) elem.remove()

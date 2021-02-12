@@ -3,6 +3,7 @@ import fs from 'fs'
 import { webFrame } from 'electron'
 import { Module } from 'module'
 import { getModule, FluxDispatcher } from '@vizality/webpack'
+import { watch } from 'chokidar'
 
 // Allow loading from discords node_modules
 Module.globalPaths.push(path.join(process.resourcesPath, 'app.asar/node_modules'))
@@ -39,10 +40,45 @@ module.exports = class BDPluginManager {
           this.__log('Loading plugins..')
           this.loadAllPlugins()
           this.startAllEnabledPlugins()
+          this.watchPluginFiles();
         }
         if (ConnectionStore.isConnected()) listener()
         else ConnectionStore.addChangeListener(listener)
       })
+  }
+
+  getPlugin (pluginName) {
+    return window.bdplugins[pluginName] || Object.values(bdplugins).find(e => e.id === pluginName);
+  }
+
+  watchPluginFiles () {
+    if (this.watcher) return;
+    this.watcher = watch(this.folder, {persistent: true});
+    this.watcher
+    .on('add', (filepath, stats) => {
+      if (!stats.isFile() || !filepath.endsWith('.plugin.js')) return;
+      const filename = path.basename(filepath);
+      const pluginName = path.basename(filepath).slice(0, filename.indexOf('.plugin.js'));
+      if (this.getPlugin(pluginName)) return;
+      this.loadPlugin(pluginName);
+    })
+    .on('change', (filepath, stats) => {
+      if (!stats.isFile() || !filepath.endsWith('.plugin.js')) return;
+      const filename = path.basename(filepath);
+      const pluginName = path.basename(filepath).slice(0, filename.indexOf('.plugin.js'));
+      if (this.getPlugin(pluginName)) this.reloadPlugin(pluginName);
+      else this.loadPlugin(pluginName);
+    })
+    .on('unlink', filepath => {
+      if (!filepath.endsWith('.plugin.js')) return;
+      const filename = path.basename(filepath);
+      const pluginName = path.basename(filepath).slice(0, filename.indexOf('.plugin.js'));
+      this.unloadPlugin(pluginName);
+    });
+  }
+
+  unwatchFiles () {
+    if (this.watcher) this.watcher.close();
   }
 
   destroy () {
@@ -51,6 +87,7 @@ module.exports = class BDPluginManager {
 
     this.observer.disconnect()
     this.stopAllPlugins()
+    this.unwatchFiles();
   }
 
 
@@ -72,14 +109,11 @@ module.exports = class BDPluginManager {
 
 
   isEnabled (pluginName) {
-    const plugin = window.bdplugins[pluginName]
-    if (!plugin) return this.__error(null, `Tried to access a missing plugin: ${pluginName}`)
-
-    return plugin.__started
+    return window.BdApi.loadData('BDCompat-EnabledPlugins', pluginName);
   }
 
   startPlugin (pluginName) {
-    const plugin = window.bdplugins[pluginName]
+    const plugin = this.getPlugin(pluginName);
     if (!plugin) return this.__error(null, `Tried to start a missing plugin: ${pluginName}`)
 
     if (plugin.__started) return
@@ -94,7 +128,7 @@ module.exports = class BDPluginManager {
     }
   }
   stopPlugin (pluginName) {
-    const plugin = window.bdplugins[pluginName]
+    const plugin = this.getPlugin(pluginName);
     if (!plugin) return this.__error(null, `Tried to stop a missing plugin: ${pluginName}`)
 
     if (!plugin.__started) return
@@ -109,17 +143,28 @@ module.exports = class BDPluginManager {
         window.BdApi.saveData('BDCompat-EnabledPlugins', plugin.plugin.getName(), false)
     }
   }
+
+  clearCache(pluginName) {
+    const plugin = this.getPlugin(pluginName);
+    if (!plugin) return this.__error(null, `Treid to clean cache for missing plugin: ${pluginName}`);
+    delete window.bdplugins[plugin.plugin.getName()];
+    delete require.cache[plugin.__filePath];
+    return true; // for later
+  }
+
   reloadPlugin (pluginName) {
-    const plugin = window.bdplugins[pluginName]
+    const plugin = this.getPlugin(pluginName);
     if (!plugin) return this.__error(null, `Tried to reload a missing plugin: ${pluginName}`)
 
     this.stopPlugin(pluginName)
 
-    delete window.bdplugins[pluginName]
-    delete require.cache[plugin.__filePath]
+    this.clearCache(pluginName);
 
-    this.loadPlugin(pluginName)
-    this.startPlugin(pluginName)
+    this.loadPlugin(pluginName, true);
+    if (this.isEnabled(pluginName)) this.startPlugin(pluginName);
+
+    this.__log(`Reloaded ${pluginName}`);
+    window.BdApi.showToast(`${pluginName} has been reloaded.`, {type: 'success'});
   }
 
   enablePlugin (pluginName) {
@@ -137,16 +182,23 @@ module.exports = class BDPluginManager {
     this.stopPlugin(pluginName)
   }
 
+  unloadPlugin (pluginName) {
+    const plugin = this.getPlugin(pluginName);
+    if (!plugin) return this.__error(null, `Tried to unload a missing plugin: ${pluginName}`);
+    this.stopPlugin(pluginName);
+    this.clearCache(pluginName);
+  }
+
   loadAllPlugins() {
     if (!fs.existsSync(this.folder)) return;
     const plugins = fs.readdirSync(this.folder)
       .filter((pluginFile) => pluginFile.endsWith('.plugin.js'))
       .map((pluginFile) => pluginFile.slice(0, -('.plugin.js'.length)))
 
-    plugins.forEach((pluginName) => this.loadPlugin(pluginName))
+    plugins.map((pluginName) => this.loadPlugin(pluginName));
   }
 
-  loadPlugin(pluginName) {
+  loadPlugin(pluginName, isReload = false) {
     const pluginPath = path.join(this.folder, `${pluginName}.plugin.js`)
     if (!fs.existsSync(pluginPath)) return this.__error(null, `Tried to load a nonexistant plugin: ${pluginName}`)
 
@@ -157,7 +209,7 @@ module.exports = class BDPluginManager {
         const plugin = new meta.type
         if (window.bdplugins[plugin.getName()]) window.bdplugins[plugin.getName()].plugin.stop()
         delete window.bdplugins[plugin.getName()]
-        window.bdplugins[plugin.getName()] = { plugin, __filePath: pluginPath, ...meta }
+        window.bdplugins[plugin.getName()] = { id: pluginName, plugin, __filePath: pluginPath, ...meta }
 
         if (plugin.load && typeof plugin.load === 'function')
           try {
@@ -166,7 +218,7 @@ module.exports = class BDPluginManager {
             this.__error(err, `Failed to preload ${plugin.getName()}`)
           }
 
-        this.__log(`Loaded ${plugin.getName()} v${plugin.getVersion()} by ${plugin.getAuthor()}`)
+        if (!isReload) this.__log(`Loaded ${plugin.getName()} v${plugin.getVersion()} by ${plugin.getAuthor()}`);
       } catch (e) {
         this.__error(e, meta)
       }
